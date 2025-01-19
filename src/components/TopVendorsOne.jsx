@@ -21,7 +21,7 @@ const TopVendorsOne = () => {
             <div className='vendor-card text-center px-16 pb-24'>
               <div className=''>
                 <img
-                  src='assets/images/thumbs/vendor-logo1.png'
+                  src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                   alt=''
                   className='vendor-card__logo m-12'
                 />
@@ -38,19 +38,19 @@ const TopVendorsOne = () => {
               </div>
               <div className='vendor-card__list mt-22 flex-center flex-wrap gap-8'>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img1.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img2.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img3.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img4.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img5.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
               </div>
             </div>
@@ -59,7 +59,7 @@ const TopVendorsOne = () => {
             <div className='vendor-card text-center px-16 pb-24'>
               <div className=''>
                 <img
-                  src='assets/images/thumbs/vendor-logo2.png'
+                  src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                   alt=''
                   className='vendor-card__logo m-12'
                 />
@@ -76,19 +76,19 @@ const TopVendorsOne = () => {
               </div>
               <div className='vendor-card__list mt-22 flex-center flex-wrap gap-8'>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img1.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img2.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img3.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img4.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img5.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
               </div>
             </div>
@@ -97,7 +97,7 @@ const TopVendorsOne = () => {
             <div className='vendor-card text-center px-16 pb-24'>
               <div className=''>
                 <img
-                  src='assets/images/thumbs/vendor-logo3.png'
+                  src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                   alt=''
                   className='vendor-card__logo m-12'
                 />
@@ -114,19 +114,19 @@ const TopVendorsOne = () => {
               </div>
               <div className='vendor-card__list mt-22 flex-center flex-wrap gap-8'>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img1.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img2.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img3.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img4.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img5.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
               </div>
             </div>
@@ -135,7 +135,7 @@ const TopVendorsOne = () => {
             <div className='vendor-card text-center px-16 pb-24'>
               <div className=''>
                 <img
-                  src='assets/images/thumbs/vendor-logo4.png'
+                  src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                   alt=''
                   className='vendor-card__logo m-12'
                 />
@@ -152,19 +152,19 @@ const TopVendorsOne = () => {
               </div>
               <div className='vendor-card__list mt-22 flex-center flex-wrap gap-8'>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img1.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img2.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img3.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img4.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img5.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
               </div>
             </div>
@@ -173,7 +173,7 @@ const TopVendorsOne = () => {
             <div className='vendor-card text-center px-16 pb-24'>
               <div className=''>
                 <img
-                  src='assets/images/thumbs/vendor-logo5.png'
+                  src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                   alt=''
                   className='vendor-card__logo m-12'
                 />
@@ -190,19 +190,19 @@ const TopVendorsOne = () => {
               </div>
               <div className='vendor-card__list mt-22 flex-center flex-wrap gap-8'>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img1.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img2.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img3.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img4.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img5.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
               </div>
             </div>
@@ -211,7 +211,7 @@ const TopVendorsOne = () => {
             <div className='vendor-card text-center px-16 pb-24'>
               <div className=''>
                 <img
-                  src='assets/images/thumbs/vendor-logo6.png'
+                  src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                   alt=''
                   className='vendor-card__logo m-12'
                 />
@@ -228,19 +228,19 @@ const TopVendorsOne = () => {
               </div>
               <div className='vendor-card__list mt-22 flex-center flex-wrap gap-8'>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img1.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img2.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img3.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img4.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img5.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
               </div>
             </div>
@@ -249,7 +249,7 @@ const TopVendorsOne = () => {
             <div className='vendor-card text-center px-16 pb-24'>
               <div className=''>
                 <img
-                  src='assets/images/thumbs/vendor-logo7.png'
+                  src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                   alt=''
                   className='vendor-card__logo m-12'
                 />
@@ -266,19 +266,19 @@ const TopVendorsOne = () => {
               </div>
               <div className='vendor-card__list mt-22 flex-center flex-wrap gap-8'>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img1.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img2.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img3.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img4.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img5.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
               </div>
             </div>
@@ -287,7 +287,7 @@ const TopVendorsOne = () => {
             <div className='vendor-card text-center px-16 pb-24'>
               <div className=''>
                 <img
-                  src='assets/images/thumbs/vendor-logo8.png'
+                  src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                   alt=''
                   className='vendor-card__logo m-12'
                 />
@@ -304,19 +304,19 @@ const TopVendorsOne = () => {
               </div>
               <div className='vendor-card__list mt-22 flex-center flex-wrap gap-8'>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img1.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img2.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img3.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img4.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                 </div>
                 <div className='vendor-card__item bg-white rounded-circle flex-center'>
-                  <img src='assets/images/thumbs/vendor-img5.png' alt='' />
+                  <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                 </div>
               </div>
             </div>

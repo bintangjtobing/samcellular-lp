@@ -99,31 +99,31 @@ const BrandOne = () => {
           <div className='brand-slider arrow-style-two'>
             <Slider {...settings}>
               <div className='brand-item'>
-                <img src='assets/images/thumbs/brand-img1.png' alt='' />
+                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
               </div>
               <div className='brand-item'>
-                <img src='assets/images/thumbs/brand-img2.png' alt='' />
+                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
               </div>
               <div className='brand-item'>
-                <img src='assets/images/thumbs/brand-img3.png' alt='' />
+                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
               </div>
               <div className='brand-item'>
-                <img src='assets/images/thumbs/brand-img4.png' alt='' />
+                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
               </div>
               <div className='brand-item'>
-                <img src='assets/images/thumbs/brand-img5.png' alt='' />
+                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
               </div>
               <div className='brand-item'>
-                <img src='assets/images/thumbs/brand-img6.png' alt='' />
+                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
               </div>
               <div className='brand-item'>
-                <img src='assets/images/thumbs/brand-img7.png' alt='' />
+                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
               </div>
               <div className='brand-item'>
-                <img src='assets/images/thumbs/brand-img8.png' alt='' />
+                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
               </div>
               <div className='brand-item'>
-                <img src='assets/images/thumbs/brand-img3.png' alt='' />
+                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
               </div>
             </Slider>
           </div>

@@ -109,7 +109,10 @@ const HotDealsOne = () => {
               />
               <div className='hot-deals__thumb'>
                 <img
-                  src='assets/images/thumbs/hot-deals-img.png'
+                  style={{
+                    height: '15rem'
+                  }}
+                  src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png'
                   alt='marketpro'
                 />
               </div>
@@ -160,7 +163,7 @@ const HotDealsOne = () => {
                       className='product-card__thumb flex-center'
                     >
                       <img
-                        src='assets/images/thumbs/product-img8.png'
+                        src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                         alt='marketpro'
                       />
                     </Link>
@@ -224,7 +227,7 @@ const HotDealsOne = () => {
                       className='product-card__thumb flex-center'
                     >
                       <img
-                        src='assets/images/thumbs/product-img9.png'
+                        src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                         alt='marketpro'
                       />
                     </Link>
@@ -288,7 +291,7 @@ const HotDealsOne = () => {
                       className='product-card__thumb flex-center'
                     >
                       <img
-                        src='assets/images/thumbs/product-img10.png'
+                        src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                         alt='marketpro'
                       />
                     </Link>
@@ -352,7 +355,7 @@ const HotDealsOne = () => {
                       className='product-card__thumb flex-center'
                     >
                       <img
-                        src='assets/images/thumbs/product-img18.png'
+                        src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png'
                         alt='marketpro'
                       />
                     </Link>
@@ -416,7 +419,7 @@ const HotDealsOne = () => {
                       className='product-card__thumb flex-center'
                     >
                       <img
-                        src='assets/images/thumbs/product-img9.png'
+                        src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png'
                         alt='marketpro'
                       />
                     </Link>

@@ -301,6 +301,62 @@ const Checkout = () => {
                     </div>
                   )}
                 </div>
+                <div className='payment-item'>
+                  <div className='form-check common-check common-radio py-16 mb-0'>
+                    <input
+                      className='form-check-input'
+                      type='radio'
+                      name='payment'
+                      id='payment4'
+                      checked={selectedPayment === "payment4"}
+                      onChange={handlePaymentChange}
+                    />
+                    <label
+                      className='form-check-label fw-semibold text-neutral-600'
+                      htmlFor='payment3'
+                    >
+                      E-Wallet
+                    </label>
+                  </div>
+                  {selectedPayment === "payment4" && (
+                    <div className='payment-item__content px-16 py-24 rounded-8 bg-main-50 position-relative d-block'>
+                      <p className='text-gray-800'>
+                        Make your payment directly into our bank account. Please
+                        use your Order ID as the payment reference. Your order
+                        will not be shipped until the funds have cleared in our
+                        account.
+                      </p>
+                    </div>
+                  )}
+                </div>
+                <div className='payment-item'>
+                  <div className='form-check common-check common-radio py-16 mb-0'>
+                    <input
+                      className='form-check-input'
+                      type='radio'
+                      name='payment'
+                      id='payment5'
+                      checked={selectedPayment === "payment5"}
+                      onChange={handlePaymentChange}
+                    />
+                    <label
+                      className='form-check-label fw-semibold text-neutral-600'
+                      htmlFor='payment3'
+                    >
+                      Credit Card
+                    </label>
+                  </div>
+                  {selectedPayment === "payment5" && (
+                    <div className='payment-item__content px-16 py-24 rounded-8 bg-main-50 position-relative d-block'>
+                      <p className='text-gray-800'>
+                        Make your payment directly into our bank account. Please
+                        use your Order ID as the payment reference. Your order
+                        will not be shipped until the funds have cleared in our
+                        account.
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
               <div className='mt-32 pt-32 border-top border-gray-100'>
                 <p className='text-gray-500'>

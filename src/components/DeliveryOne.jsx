@@ -15,7 +15,7 @@ const DeliveryOne = () => {
             <div className='col-md-3 d-md-block d-none'>
               <div className='delivery__man text-center'>
                 <img
-                  src='assets/images/thumbs/delivery-man.png'
+                  src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png'
                   alt='marketpro'
                 />
               </div>

@@ -99,7 +99,7 @@ const OrganicOne = () => {
                   className='product-card__thumb flex-center'
                 >
                   <img
-                    src='assets/images/thumbs/product-img20.png'
+                    src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png'
                     alt='marketpro'
                   />
                 </Link>
@@ -151,7 +151,7 @@ const OrganicOne = () => {
                   className='product-card__thumb flex-center'
                 >
                   <img
-                    src='assets/images/thumbs/product-img21.png'
+                    src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                     alt='marketpro'
                   />
                 </Link>
@@ -255,7 +255,7 @@ const OrganicOne = () => {
                   className='product-card__thumb flex-center'
                 >
                   <img
-                    src='assets/images/thumbs/product-img23.png'
+                    src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png'
                     alt='marketpro'
                   />
                 </Link>
@@ -307,7 +307,7 @@ const OrganicOne = () => {
                   className='product-card__thumb flex-center'
                 >
                   <img
-                    src='assets/images/thumbs/product-img24.png'
+                    src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png'
                     alt='marketpro'
                   />
                 </Link>
@@ -359,7 +359,7 @@ const OrganicOne = () => {
                   className='product-card__thumb flex-center'
                 >
                   <img
-                    src='assets/images/thumbs/product-img25.png'
+                    src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png'
                     alt='marketpro'
                   />
                 </Link>
@@ -411,7 +411,7 @@ const OrganicOne = () => {
                   className='product-card__thumb flex-center'
                 >
                   <img
-                    src='assets/images/thumbs/product-img21.png'
+                    src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png'
                     alt='marketpro'
                   />
                 </Link>

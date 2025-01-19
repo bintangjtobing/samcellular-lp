@@ -45,7 +45,7 @@ const BestSellsOne = () => {
                       className='product-card__thumb flex-center'
                     >
                       <img
-                        src='assets/images/thumbs/best-sell1.png'
+                        src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png'
                         alt='marketpro'
                       />
                     </Link>
@@ -139,7 +139,7 @@ const BestSellsOne = () => {
                       className='product-card__thumb flex-center'
                     >
                       <img
-                        src='assets/images/thumbs/best-sell2.png'
+                        src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png'
                         alt='marketpro'
                       />
                     </Link>
@@ -233,7 +233,7 @@ const BestSellsOne = () => {
                       className='product-card__thumb flex-center'
                     >
                       <img
-                        src='assets/images/thumbs/best-sell3.png'
+                        src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png'
                         alt='marketpro'
                       />
                     </Link>
@@ -327,7 +327,7 @@ const BestSellsOne = () => {
                       className='product-card__thumb flex-center'
                     >
                       <img
-                        src='assets/images/thumbs/best-sell4.png'
+                        src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png'
                         alt='marketpro'
                       />
                     </Link>

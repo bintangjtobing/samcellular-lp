@@ -115,7 +115,7 @@ const FeatureOne = () => {
               <div className='feature-item text-center'>
                 <div className='feature-item__thumb rounded-circle'>
                   <Link href='/shop' className='w-100 h-100 flex-center'>
-                    <img src='assets/images/thumbs/feature-img1.png' alt='' />
+                    <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                   </Link>
                 </div>
                 <div className='feature-item__content mt-16'>
@@ -130,7 +130,7 @@ const FeatureOne = () => {
               <div className='feature-item text-center'>
                 <div className='feature-item__thumb rounded-circle'>
                   <Link href='/shop' className='w-100 h-100 flex-center'>
-                    <img src='assets/images/thumbs/feature-img2.png' alt='' />
+                    <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                   </Link>
                 </div>
                 <div className='feature-item__content mt-16'>
@@ -145,7 +145,7 @@ const FeatureOne = () => {
               <div className='feature-item text-center'>
                 <div className='feature-item__thumb rounded-circle'>
                   <Link href='/shop' className='w-100 h-100 flex-center'>
-                    <img src='assets/images/thumbs/feature-img3.png' alt='' />
+                    <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                   </Link>
                 </div>
                 <div className='feature-item__content mt-16'>
@@ -160,7 +160,7 @@ const FeatureOne = () => {
               <div className='feature-item text-center'>
                 <div className='feature-item__thumb rounded-circle'>
                   <Link href='/shop' className='w-100 h-100 flex-center'>
-                    <img src='assets/images/thumbs/feature-img4.png' alt='' />
+                    <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                   </Link>
                 </div>
                 <div className='feature-item__content mt-16'>
@@ -175,7 +175,7 @@ const FeatureOne = () => {
               <div className='feature-item text-center'>
                 <div className='feature-item__thumb rounded-circle'>
                   <Link href='/shop' className='w-100 h-100 flex-center'>
-                    <img src='assets/images/thumbs/feature-img5.png' alt='' />
+                    <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                   </Link>
                 </div>
                 <div className='feature-item__content mt-16'>
@@ -190,7 +190,7 @@ const FeatureOne = () => {
               <div className='feature-item text-center'>
                 <div className='feature-item__thumb rounded-circle'>
                   <Link href='/shop' className='w-100 h-100 flex-center'>
-                    <img src='assets/images/thumbs/feature-img6.png' alt='' />
+                    <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                   </Link>
                 </div>
                 <div className='feature-item__content mt-16'>
@@ -205,7 +205,7 @@ const FeatureOne = () => {
               <div className='feature-item text-center'>
                 <div className='feature-item__thumb rounded-circle'>
                   <Link href='/shop' className='w-100 h-100 flex-center'>
-                    <img src='assets/images/thumbs/feature-img7.png' alt='' />
+                    <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                   </Link>
                 </div>
                 <div className='feature-item__content mt-16'>
@@ -220,7 +220,7 @@ const FeatureOne = () => {
               <div className='feature-item text-center'>
                 <div className='feature-item__thumb rounded-circle'>
                   <Link href='/shop' className='w-100 h-100 flex-center'>
-                    <img src='assets/images/thumbs/feature-img2.png' alt='' />
+                    <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                   </Link>
                 </div>
                 <div className='feature-item__content mt-16'>
@@ -235,7 +235,7 @@ const FeatureOne = () => {
               <div className='feature-item text-center'>
                 <div className='feature-item__thumb rounded-circle'>
                   <Link href='/shop' className='w-100 h-100 flex-center'>
-                    <img src='assets/images/thumbs/feature-img8.png' alt='' />
+                    <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
                   </Link>
                 </div>
                 <div className='feature-item__content mt-16'>
@@ -250,7 +250,7 @@ const FeatureOne = () => {
               <div className='feature-item text-center'>
                 <div className='feature-item__thumb rounded-circle'>
                   <Link href='/shop' className='w-100 h-100 flex-center'>
-                    <img src='assets/images/thumbs/feature-img9.png' alt='' />
+                    <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
                   </Link>
                 </div>
                 <div className='feature-item__content mt-16'>
@@ -265,7 +265,7 @@ const FeatureOne = () => {
               <div className='feature-item text-center'>
                 <div className='feature-item__thumb rounded-circle'>
                   <Link href='/shop' className='w-100 h-100 flex-center'>
-                    <img src='assets/images/thumbs/feature-img10.png' alt='' />
+                    <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
                   </Link>
                 </div>
                 <div className='feature-item__content mt-16'>
