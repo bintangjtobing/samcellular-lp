@@ -34,7 +34,7 @@ $colors: (
     "300": #B3B3B3,
     "400": #999999,
     "500": #808080,
-    "600": #121535,
+    "600": #4B4B4B,
     "700": #060710,
     "800": #11132e,
     "900": #1A1A1A,
@@ -221,9 +221,9 @@ $font-sizes: (
   --main: var(--main-h) var(--main-s) var(--main-l);
 
   /* template main color */
-  --main-two-h: 25;
-  --main-two-s: 100%;
-  --main-two-l: 49%;
+  --main-two-h: 120;
+  --main-two-s: 61%;
+  --main-two-l: 50%;
   --main-two: var(--main-two-h) var(--main-two-s) var(--main-two-l);
 
    /* White Color */
@@ -239,7 +239,25 @@ $font-sizes: (
   --bg-color-one: #F3FAF2; 
   --bg-color-two: #FFFBF4; 
   --bg-color-three: #F1F1F1; 
-  --neutral: #121535; 
+  --neutral: #4B4B4B; 
+
+  /* Header */
+  --header-bg-color: #32CD32; /* Hijau Segar */
+  --header-text-color: #FFFFFF; /* Putih Bersih */
+
+  /* Call-to-Action */
+  --cta-bg-color: #FFD700; /* Kuning Cerah */
+  --cta-hover-color: #FF8C00; /* Oranye Enerjik */
+  --cta-text-color: #FFFFFF; /* Putih Bersih */
+
+  /* Footer */
+  --footer-bg-color: #000000; /* Hitam Solid */
+  --footer-text-color: #4B4B4B; /* Abu Gelap */
+
+  /* Interactive Buttons */
+  --button-bg-color: #1E90FF; /* Biru Elektrik */
+  --button-hover-color: #FFFFFF; /* Putih Bersih */
+  --button-text-color: #FFFFFF; /* Putih Bersih */
 
   --translate-x-middle: translateX(-50%); 
   --translate-y-middle: translateY(-50%); 

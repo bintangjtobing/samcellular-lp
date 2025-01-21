@@ -29,6 +29,7 @@
 .logo {
     img {
         max-width: 200px;
+        height: 100px;
         @include xsm-screen {
             max-width: 148px;
         }

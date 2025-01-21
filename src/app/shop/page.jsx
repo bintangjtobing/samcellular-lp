@@ -8,9 +8,9 @@ import Preloader from "@/helper/Preloader";
 import ScrollToTopInit from "@/helper/ScrollToTopInit";
 
 export const metadata = {
-  title: "MarketPro - E-commerce Next JS Template",
+  title: "Sam Cellular - Jual Beli HP Baru & Bekas | Kredit HP Cepat Cair",
   description:
-    "MarketPro is a comprehensive and versatile Next JS template designed for e-commerce platforms, specifically tailored for multi vendor marketplaces. With its modern design and extensive feature set, MarketPro provides everything you need to create a robust and user-friendly online marketplace..",
+    "Sam Cellular melayani jual beli HP baru & bekas dengan harga terbaik! Nikmati kredit HP tanpa DP hanya dengan modal KTP, cair dalam 10 menit. Tersedia di Medan Fair dan Plaza Millenium. Toko HP terpercaya untuk kredit HP iPhone, Android, dan banyak lagi!",
 };
 
 const page = () => {
@@ -20,7 +20,7 @@ const page = () => {
       <ColorInit color={true} />
 
       {/* ScrollToTop */}
-      <ScrollToTopInit color='#FA6400' />
+      <ScrollToTopInit color="#FA6400" />
 
       {/* Preloader */}
       <Preloader />

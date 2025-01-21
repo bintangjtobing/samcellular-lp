@@ -60,9 +60,9 @@
     --main-l: 39%;
     --main: var(--main-h) var(--main-s) var(--main-l);
   /* template main color */
-    --main-two-h: 25;
-    --main-two-s: 100%;
-    --main-two-l: 49%;
+    --main-two-h: 120;
+    --main-two-s: 61%;
+    --main-two-l: 50%;
     --main-two: var(--main-two-h) var(--main-two-s) var(--main-two-l);
   /* White Color */
     --white: 0 0% 100%;
@@ -75,7 +75,7 @@
     --bg-color-one: #F3FAF2;
     --bg-color-two: #FFFBF4;
     --bg-color-three: #F1F1F1;
-    --neutral: #121535;
+    --neutral: #4B4B4B;
     --translate-x-middle: translateX(-50%);
     --translate-y-middle: translateY(-50%);
     --size-2: 0.125rem;
@@ -143,7 +143,7 @@
     --neutral-300: #B3B3B3;
     --neutral-400: #999999;
     --neutral-500: #808080;
-    --neutral-600: #121535;
+    --neutral-600: #4B4B4B;
     --neutral-700: #060710;
     --neutral-800: #11132e;
     --neutral-900: #1A1A1A;
@@ -4617,6 +4617,9 @@ input:focus-visible {
 .max-w-275 {
     max-width: 275px;
 }
+.max-w-400 {
+    max-width: 400px;
+}
 
 .top-n6 {
     inset-block-start: -6px;
@@ -7885,6 +7888,7 @@ input:focus-visible {
 
 .logo img {
     max-width: 200px;
+    height: 100px;
 }
 
 @media screen and (max-width: 424px) {
@@ -9204,7 +9208,7 @@ input:focus-visible {
 /* Shipping Css End */
 /* ======================= Newsletter Css Start =========================== */
 .newsletter-box {
-    background-color: #121535;
+    background-color: #4B4B4B;
     padding: 32px clamp(1.5rem, -8.492rem + 13.333vw, 4rem);
 }
 
@@ -9216,9 +9220,9 @@ input:focus-visible {
 /* ======================= Newsletter Css End =========================== */
 /* Home Two Css Start */
 .color-two:root {
-    --main-h: 24;
-    --main-s: 100%;
-    --main-l: 49%;
+    --main-h: 120;
+    --main-s: 61%;
+    --main-l: 50%;
 }
 
 .color-two h1,
