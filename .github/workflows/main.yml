@@ -1,0 +1,49 @@
+name: Deploy SamCellularSystemBE to SSH
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      # Step 2: Install dependencies and build
+      - name: Install Dependencies
+        run: |
+          npm install
+
+      - name: Build Next.js
+        run: |
+          npm run build
+
+      # Step 3: Transfer the build folder to server
+      - name: Deploy to Server
+        run: |
+          sshpass -p '530EYuBe0rS7KY5@' rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
+            ./ \
+            root@147.93.30.80:/var/www/samcellular-lp/
+
+      # Step 4: Set correct permissions (optional)
+      - name: Set Permissions
+        run: |
+          sshpass -p '530EYuBe0rS7KY5@' ssh -o StrictHostKeyChecking=no root@147.93.30.80 '
+            chmod -R 755 /var/www/samcellular-lp &&
+            chown -R www-data:www-data /var/www/samcellular-lp
+          '
+
+      # Step 5: Restart Server (if necessary)
+      - name: Restart Server (optional)
+        run: |
+          sshpass -p '530EYuBe0rS7KY5@' ssh -o StrictHostKeyChecking=no root@147.93.30.80 '
+            systemctl restart nginx
+          '
