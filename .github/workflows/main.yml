@@ -47,3 +47,8 @@ jobs:
           sshpass -p '530EYuBe0rS7KY5@' ssh -o StrictHostKeyChecking=no root@147.93.30.80 '
             systemctl restart nginx
           '
+
+      - name: Restart PM2 Process
+        run: |
+          sshpass -p '530EYuBe0rS7KY5@' ssh -o StrictHostKeyChecking=no root@147.93.30.80 \
+          "pm2 restart 0"
