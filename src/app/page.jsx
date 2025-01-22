@@ -1,3 +1,5 @@
+'use client'
+
 import BannerTwo from "@/components/BannerTwo";
 import BigDealOne from "@/components/BigDealOne";
 import BottomFooter from "@/components/BottomFooter";
@@ -20,44 +22,17 @@ import ColorInit from "@/helper/ColorInit";
 import Preloader from "@/helper/Preloader";
 import ScrollToTopInit from "@/helper/ScrollToTopInit";
 
-export const metadata = {
-  title: "Sam Cellular - Jual Beli HP Baru & Bekas | Kredit HP Cepat Cair",
-  description:
-    "Sam Cellular melayani jual beli HP baru & bekas dengan harga terbaik! Nikmati kredit HP tanpa DP hanya dengan modal KTP, cair dalam 10 menit. Tersedia di Medan Fair dan Plaza Millenium. Toko HP terpercaya untuk kredit HP iPhone, Android, dan banyak lagi!",
-  keywords: [
-    "Jual HP Baru dan Bekas",
-    "Kredit HP Cepat Cair",
-    "Jual Beli HP Medan",
-    "HP Kredit Tanpa DP",
-    "HP Modal KTP",
-    "HP Harga Terjangkau",
-    "Toko HP Terpercaya Medan",
-    "Beli HP Bekas Berkualitas",
-    "Kredit HP KTP Cair 10 Menit",
-    "Beli HP Baru Cicilan Mudah",
-    "Toko HP Medan Fair",
-    "Jual HP Bekas Harga Tinggi",
-    "Plaza Millenium Toko HP",
-    "Jual HP Android Terbaru",
-    "HP Kredit Bunga Rendah",
-    "Promo Kredit HP Medan",
-    "HP iPhone Kredit Cepat",
-    "HP Murah COD Medan",
-    "Cara kredit HP modal KTP tanpa DP di Medan",
-    "Tempat jual beli HP baru dan bekas terpercaya",
-    "Kredit HP tanpa kartu kredit proses cepat",
-    "Beli HP bekas berkualitas dengan cicilan mudah",
-    "Jual beli HP bekas harga terbaik di Medan",
-    "Sam Cellular HP Baru",
-    "Kredit HP Sam Cellular",
-    "Sam Cellular Medan Fair",
-    "Promo HP Sam Cellular",
-  ],
-};
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from "react";
+
 
 const page = () => {
+
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       {/* ColorInit */}
       <ColorInit color={false} />
 
@@ -99,7 +74,7 @@ const page = () => {
 
       {/* BottomFooter */}
       <BottomFooter />
-    </>
+    </QueryClientProvider>
   );
 };
 

@@ -4,6 +4,7 @@ import React, { memo, useEffect, useState } from "react";
 import Link from "next/link";
 import Slider from "react-slick";
 import { clientApiRequest } from "@/services/clientApiRequest";
+import { useQuery } from '@tanstack/react-query';
 
 const SampleNextArrow = memo(function SampleNextArrow(props) {
   const { className, onClick } = props;
@@ -31,8 +32,20 @@ const SamplePrevArrow = memo(function SamplePrevArrow(props) {
   );
 });
 
+const fetchProducts = async () => {
+  const { data } = await clientApiRequest({
+    url: "products",
+    method: "GET",
+  });
+  return data;
+};
+
 const DealsOne = () => {
-  const [data, setData] = useState([])
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchProducts,
+  });
+  
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -52,22 +65,6 @@ const DealsOne = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await clientApiRequest({
-          url: "products",
-          method: "GET"
-        })
-        console.log(data);
-        setData(data)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getData()
-  }, [])
 
   const settings = {
     dots: false,

@@ -5,10 +5,22 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { clientApiRequest } from "@/services/clientApiRequest";
+import { useQuery } from '@tanstack/react-query';
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
+const fetchProducts = async () => {
+  const { data } = await clientApiRequest({
+    url: "products",
+    method: "GET",
+  });
+  return data;
+};
+
 const FeaturedOne = () => {
-  const [data, setData] = useState([])
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchProducts,
+  });
   function SampleNextArrow(props) {
     const { className, onClick } = props;
     return (
@@ -54,22 +66,6 @@ const FeaturedOne = () => {
       },
     ],
   };
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await clientApiRequest({
-          url: "products",
-          method: "GET"
-        })
-        console.log(data);
-        setData(data)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getData()
-  }, [])
 
   return (
     <section className="featured-products">
