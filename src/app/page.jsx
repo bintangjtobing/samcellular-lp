@@ -50,9 +50,6 @@ const page = () => {
       {/* PromotionalTwo */}
       <PromotionalTwo />
 
-      {/* brantTwo */}
-      <BrandTwo />
-
       {/* DealsOne */}
       <DealsOne />
 
@@ -67,6 +64,9 @@ const page = () => {
 
       {/* DaySaleOne */}
       <DaySaleOne />
+
+      {/* brantTwo */}
+      <BrandTwo />
 
       {/* ShippingTwo */}
       <ShippingTwo />

@@ -114,8 +114,8 @@ const BrandTwo = () => {
                         <Slider {...settings}>
                             {data && data.map((item, index) => (
                                 <div key={index}>
-                                    <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
-                                        <img src={item.description} alt={item.name} />
+                                    <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-10">
+                                        <img className='w-72' src={item.description} alt={item.name} />
                                     </div>
                                 </div>
                             ))}
