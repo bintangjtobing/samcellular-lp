@@ -3,6 +3,7 @@ import RouteScrollToTop from "@/helper/RouteScrollToTop";
 import "./font.css";
 import "./globals.scss";
 import PhosphorIconInit from "@/helper/PhosphorIconInit";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export const metadata = {
   title: "Sam Cellular - Jual Beli HP Baru & Bekas | Kredit HP Cepat Cair",

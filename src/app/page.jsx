@@ -21,16 +21,14 @@ import TrendingOne from "@/components/TrendingOne";
 import ColorInit from "@/helper/ColorInit";
 import Preloader from "@/helper/Preloader";
 import ScrollToTopInit from "@/helper/ScrollToTopInit";
-
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from "react";
 
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+// 
 const page = () => {
-
   const [queryClient] = useState(() => new QueryClient());
-
   return (
     <QueryClientProvider client={queryClient}>
       {/* ColorInit */}
@@ -52,7 +50,7 @@ const page = () => {
       <PromotionalTwo />
 
       {/* DealsOne */}
-      <DealsOne />
+      {/* <DealsOne /> */}
 
       {/* DiscountOne */}
       <DiscountOne />
