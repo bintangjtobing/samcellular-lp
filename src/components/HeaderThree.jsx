@@ -645,45 +645,6 @@ const HeaderThree = () => {
                   </span>
                 </button>
                 <Link
-                  href='/account'
-                  className='flex-align flex-column gap-8 item-hover-two'
-                >
-                  <span className='text-2xl text-white d-flex position-relative item-hover__text'>
-                    <i className='ph ph-user' />
-                  </span>
-                  <span className='text-md text-white item-hover__text d-none d-lg-flex'>
-                    Profile
-                  </span>
-                </Link>
-                <Link
-                  href='/wishlist'
-                  className='flex-align flex-column gap-8 item-hover-two'
-                >
-                  <span className='text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text'>
-                    <i className='ph ph-heart' />
-                    <span className='w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4'>
-                      2
-                    </span>
-                  </span>
-                  <span className='text-md text-white item-hover__text d-none d-lg-flex'>
-                    Wishlist
-                  </span>
-                </Link>
-                <Link
-                  href='/cart'
-                  className='flex-align flex-column gap-8 item-hover-two'
-                >
-                  <span className='text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text'>
-                    <i className='ph-fill ph-shuffle' />
-                    <span className='w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4'>
-                      2
-                    </span>
-                  </span>
-                  <span className='text-md text-white item-hover__text d-none d-lg-flex'>
-                    Compare
-                  </span>
-                </Link>
-                <Link
                   href='/cart'
                   className='flex-align flex-column gap-8 item-hover-two'
                 >
