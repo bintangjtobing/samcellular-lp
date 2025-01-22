@@ -4,7 +4,7 @@ import React, { memo, useEffect, useState } from "react";
 import Link from "next/link";
 import Slider from "react-slick";
 import { clientApiRequest } from "@/services/clientApiRequest";
-import { useQuery, dehydrate, QueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const SampleNextArrow = memo(function SampleNextArrow(props) {
   const { className, onClick } = props;
@@ -38,19 +38,6 @@ const fetchProducts = async () => {
     method: "GET",
   });
   return data;
-};
-
-export const getStaticProps = async () => {
-  const queryClient = new QueryClient();
-
-  // Prefetch data di server
-  await queryClient.prefetchQuery(['products'], fetchProducts);
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient), // Kirim state ke client
-    },
-  };
 };
 
 const DealsOne = () => {

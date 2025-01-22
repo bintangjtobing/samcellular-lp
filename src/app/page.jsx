@@ -22,6 +22,7 @@ import ColorInit from "@/helper/ColorInit";
 import Preloader from "@/helper/Preloader";
 import ScrollToTopInit from "@/helper/ScrollToTopInit";
 import { useState } from "react";
+import BrandTwo from "@/components/BrandTwo";
 
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -49,8 +50,11 @@ const page = () => {
       {/* PromotionalTwo */}
       <PromotionalTwo />
 
+      {/* brantTwo */}
+      <BrandTwo />
+
       {/* DealsOne */}
-      {/* <DealsOne /> */}
+      <DealsOne />
 
       {/* DiscountOne */}
       <DiscountOne />

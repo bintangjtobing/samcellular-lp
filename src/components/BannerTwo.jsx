@@ -3,11 +3,23 @@
 import React from "react";
 import Link from "next/link";
 import Slider from "react-slick";
-import { useEffect, useState } from "react";
 import { clientApiRequest } from "@/services/clientApiRequest";
+import { useQuery } from '@tanstack/react-query';
+
+const fetchData = async () => {
+  const { data } = await clientApiRequest({
+    url: 'categories',
+    method: 'GET',
+    parameter: 'business_id=1'
+  })
+  return data
+}
 
 const BannerTwo = () => {
-  const [data, setData] = useState([])
+  const { data, error, isLoading } = useQuery({
+     queryKey: ['categories'],
+     queryFn: fetchData,
+   });
   const settings = {
     dots: true,
 
@@ -17,25 +29,6 @@ const BannerTwo = () => {
     slidesToScroll: 1,
     initialSlide: 0,
   };
-
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const { data } = await clientApiRequest({
-          url: 'categories',
-          method: 'GET',
-          parameter: 'business_id=1'
-        })
-        console.log(data);
-        setData(data)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    getData()
-  }, [])
 
   return (
     <div className='banner-two'>

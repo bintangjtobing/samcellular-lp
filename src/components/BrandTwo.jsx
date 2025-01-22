@@ -1,7 +1,23 @@
 import React from 'react'
 import Slider from 'react-slick';
+import { clientApiRequest } from '@/services/clientApiRequest';
+import { useQuery } from '@tanstack/react-query';
+
+
+const fetchData = async () => {
+    const { data } = await clientApiRequest({
+        url: "brands",
+        method: "GET",
+        parameter: 'business_id=1'
+    })
+    return data
+}
 
 const BrandTwo = () => {
+    const { data, error, isLoading } = useQuery({
+        queryKey: ['brands'],
+        queryFn: fetchData,
+    })
     function SampleNextArrow(props) {
         const { className, onClick } = props;
         return (
@@ -96,51 +112,13 @@ const BrandTwo = () => {
                     </div>
                     <div className="top-brand__slider">
                         <Slider {...settings}>
-                            <div>
-                                <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
-                                    <img src="assets/images/thumbs/top-brand-img1.png" alt="" />
+                            {data && data.map((item, index) => (
+                                <div key={index}>
+                                    <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
+                                        <img src={item.description} alt={item.name} />
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
-                                    <img src="assets/images/thumbs/top-brand-img2.png" alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
-                                    <img src="assets/images/thumbs/top-brand-img3.png" alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
-                                    <img src="assets/images/thumbs/top-brand-img4.png" alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
-                                    <img src="assets/images/thumbs/top-brand-img5.png" alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
-                                    <img src="assets/images/thumbs/top-brand-img6.png" alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
-                                    <img src="assets/images/thumbs/top-brand-img7.png" alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
-                                    <img src="assets/images/thumbs/top-brand-img8.png" alt="" />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
-                                    <img src="assets/images/thumbs/top-brand-img5.png" alt="" />
-                                </div>
-                            </div>
+                            ))}
                         </Slider>
                     </div>
                 </div>

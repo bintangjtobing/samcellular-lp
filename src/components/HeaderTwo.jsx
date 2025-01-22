@@ -132,211 +132,14 @@ const HeaderTwo = ({ category }) => {
                   Home
                 </Link>
               </li>
-              <li
-                onClick={() => handleMenuClick(1)}
-                className={`on-hover-item nav-menu__item has-submenu ${
-                  activeIndex === 1 ? "d-block" : ""
-                }`}
-              >
-                <Link href="#" className="nav-menu__link">
-                  Shop
-                </Link>
-                <ul
-                  className={`on-hover-dropdown common-dropdown nav-submenu scroll-sm ${
-                    activeIndex === 1 ? "open" : ""
-                  }`}
-                >
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/shop"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      {" "}
-                      Shop
-                    </Link>
-                  </li>
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/product-details"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      {" "}
-                      Shop Details
-                    </Link>
-                  </li>
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/product-details-two"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      {" "}
-                      Shop Details Two
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li
-                onClick={() => handleMenuClick(2)}
-                className={`on-hover-item nav-menu__item has-submenu ${
-                  activeIndex === 2 ? "d-block" : ""
-                }`}
-              >
-                <span className="badge-notification bg-warning-600 text-white text-sm py-2 px-8 rounded-4">
-                  New
-                </span>
-                <Link href="#" className="nav-menu__link">
-                  Pages
-                </Link>
-                <ul
-                  className={`on-hover-dropdown common-dropdown nav-submenu scroll-sm ${
-                    activeIndex === 2 ? "open" : ""
-                  }`}
-                >
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/cart"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      {" "}
-                      Cart
-                    </Link>
-                  </li>
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/wishlist"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      Wishlist
-                    </Link>
-                  </li>
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/checkout"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      Checkout
-                    </Link>
-                  </li>
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/become-seller"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      Become Seller
-                    </Link>
-                  </li>
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/account"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      Account
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li
-                onClick={() => handleMenuClick(3)}
-                className={`on-hover-item nav-menu__item has-submenu ${
-                  activeIndex === 3 ? "d-block" : ""
-                }`}
-              >
-                <span className="badge-notification bg-tertiary-600 text-white text-sm py-2 px-8 rounded-4">
-                  New
-                </span>
-                <Link href="#" className="nav-menu__link">
-                  Vendors
-                </Link>
-                <ul
-                  className={`on-hover-dropdown common-dropdown nav-submenu scroll-sm ${
-                    activeIndex === 3 ? "open" : ""
-                  }`}
-                >
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/vendor"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      Vendors
-                    </Link>
-                  </li>
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/vendor-details"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      Vendor Details
-                    </Link>
-                  </li>
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/vendor-two"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      Vendors Two
-                    </Link>
-                  </li>
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/vendor-two-details"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      Vendors Two Details
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li
-                onClick={() => handleMenuClick(4)}
-                className={`on-hover-item nav-menu__item has-submenu ${
-                  activeIndex === 4 ? "d-block" : ""
-                }`}
-              >
-                <Link href="#" className="nav-menu__link">
-                  Blog
-                </Link>
-                <ul
-                  className={`on-hover-dropdown common-dropdown nav-submenu scroll-sm ${
-                    activeIndex === 4 ? "open" : ""
-                  }`}
-                >
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/blog"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      {" "}
-                      Blog
-                    </Link>
-                  </li>
-                  <li className="common-dropdown__item nav-submenu__item">
-                    <Link
-                      onClick={() => setActiveIndex(null)}
-                      href="/blog-details"
-                      className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
-                    >
-                      {" "}
-                      Blog Details
-                    </Link>
-                  </li>
-                </ul>
-              </li>
               <li className="nav-menu__item">
                 <Link href="/contact" className="nav-menu__link">
                   Contact Us
+                </Link>
+              </li>
+              <li className="nav-menu__item">
+                <Link href="/contact" className="nav-menu__link">
+                  About Us
                 </Link>
               </li>
             </ul>
@@ -1637,7 +1440,7 @@ const HeaderTwo = ({ category }) => {
                       Home
                     </Link>
                   </li>
-                  <li className="on-hover-item nav-menu__item has-submenu">
+                  {/* <li className="on-hover-item nav-menu__item has-submenu">
                     <Link href="#" className="nav-menu__link">
                       Shop
                     </Link>
@@ -1827,10 +1630,21 @@ const HeaderTwo = ({ category }) => {
                         </Link>
                       </li>
                     </ul>
-                  </li>
+                  </li> */}
                   <li className="nav-menu__item">
                     <Link
                       href="/contact"
+                      scroll={false}
+                      className={`nav-menu__link ${
+                        pathname == "/contact" && "activePage"
+                      } `}
+                    >
+                      About Us
+                    </Link>
+                  </li>
+                  <li className="nav-menu__item">
+                    <Link
+                      href="#"
                       scroll={false}
                       className={`nav-menu__link ${
                         pathname == "/contact" && "activePage"
