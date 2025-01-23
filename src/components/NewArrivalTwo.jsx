@@ -132,8 +132,13 @@ const NewArrivalTwo = () => {
                     <div className="product-card__content mt-12">
                       <div className="product-card__price mb-8">
                         <span className="text-heading text-md fw-semibold ">
-                          Rp {item.variations[0].default_sell_price}
-                          <span className="text-gray-500 fw-normal">/Qty</span>{" "}
+                          {new Intl.NumberFormat("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                            maximumFractionDigits: 0,
+                          }).format(
+                            item.variations[0].sell_price_inc_tax
+                          )}{" "}
                         </span>
                       </div>
                       <div className="flex-align gap-6">
@@ -149,7 +154,7 @@ const NewArrivalTwo = () => {
                         href="/cart"
                         className="product-card__cart btn bg-main-50 text-main-600 hover-bg-main-600 hover-text-white py-11 px-24 rounded-pill flex-align gap-8 mt-24 w-100 justify-content-center"
                       >
-                        Add To Cart <i className="ph ph-shopping-cart" />
+                        Beli <i className="ph ph-shopping-cart" />
                       </Link>
                     </div>
                   </div>

@@ -8,12 +8,12 @@ import { clientApiRequest } from "@/services/clientApiRequest";
 import dynamic from "next/dynamic";
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
-const ProductDetailsTwo = ({id}) => {
-  const {data} = useQuery({
+const ProductDetailsTwo = ({ id }) => {
+  const { data } = useQuery({
     queryKey: ['product-details'],
     queryFn: async () => {
-      const {data} = await clientApiRequest({
-        url: 'products/'+id,
+      const { data } = await clientApiRequest({
+        url: 'products/' + id,
         method: 'GET'
       })
       return data
@@ -79,7 +79,7 @@ const ProductDetailsTwo = ({id}) => {
                   </div>
                   <div className="mt-24">
                     <div className="product-details__images-slider">
-                      <Slider {...settingsThumbs}>
+                      {/* <Slider {...settingsThumbs}>
                         {productImages.map((image, index) => (
                           <div
                             className="center max-w-120 max-h-120 h-100 flex-center border border-gray-100 rounded-16 p-8"
@@ -93,46 +93,13 @@ const ProductDetailsTwo = ({id}) => {
                             />
                           </div>
                         ))}
-                      </Slider>
+                      </Slider> */}
                     </div>
                   </div>
                 </div>
               </div>
               <div className="col-xl-6">
                 <div className="product-details__content">
-                  <div className="flex-center mb-24 flex-wrap gap-16 bg-color-one rounded-8 py-16 px-24 position-relative z-1">
-                    <img
-                      src="assets/images/bg/details-offer-bg.png"
-                      alt=""
-                      className="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1"
-                    />
-                    <div className="flex-align gap-16">
-                      <span className="text-white text-sm">Special Offer:</span>
-                    </div>
-                    <div className="countdown" id="countdown11">
-                      <ul className="countdown-list flex-align flex-wrap">
-                        <li className="countdown-list__item text-heading flex-align gap-4 text-xs fw-medium w-28 h-28 rounded-4 border border-main-600 p-0 flex-center">
-                          {timeLeft.days}
-                          <span className="days" />
-                        </li>
-                        <li className="countdown-list__item text-heading flex-align gap-4 text-xs fw-medium w-28 h-28 rounded-4 border border-main-600 p-0 flex-center">
-                          {timeLeft.hours}
-                          <span className="hours" />
-                        </li>
-                        <li className="countdown-list__item text-heading flex-align gap-4 text-xs fw-medium w-28 h-28 rounded-4 border border-main-600 p-0 flex-center">
-                          {timeLeft.minutes}
-                          <span className="minutes" />
-                        </li>
-                        <li className="countdown-list__item text-heading flex-align gap-4 text-xs fw-medium w-28 h-28 rounded-4 border border-main-600 p-0 flex-center">
-                          {timeLeft.seconds}
-                          <span className="seconds" />
-                        </li>
-                      </ul>
-                    </div>
-                    <span className="text-white text-xs">
-                      Remains untill the end of the offer
-                    </span>
-                  </div>
                   <h5 className="mb-12">
                     {data && data.name}
                   </h5>
@@ -165,7 +132,7 @@ const ProductDetailsTwo = ({id}) => {
                     <span className="text-sm fw-medium text-gray-500">|</span>
                     <span className="text-gray-900">
                       {" "}
-                      <span className="text-gray-400">SKU:</span>EB4DRP{" "}
+                      <span className="text-gray-400">SKU:</span>{data && data.sku}{" "}
                     </span>
                   </div>
                   <span className="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block" />
@@ -183,7 +150,13 @@ const ProductDetailsTwo = ({id}) => {
                         <i className="ph-fill ph-seal-percent text-xl" />
                         -10%
                       </div>
-                      <h6 className="mb-0">IDR {data && data?.variations[0].default_sell_price}</h6>
+                      <h6 className="mb-0">IDR{new Intl.NumberFormat("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                        maximumFractionDigits: 0,
+                      }).format(
+                        data && data.variations[0].sell_price_inc_tax
+                      )}{" "}</h6>
                     </div>
                     <div className="flex-align gap-8">
                       <span className="text-gray-700">Regular Price</span>

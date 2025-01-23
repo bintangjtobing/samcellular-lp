@@ -360,16 +360,21 @@ const ShopSection = () => {
                     <div className="product-card__price my-20">
                       <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
                       <span className="text-heading text-md fw-semibold ">
-                        Rp {item.variations[0].default_sell_price}
-                        <span className="text-gray-500 fw-normal">/Qty</span>{" "}
+                        {new Intl.NumberFormat("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                          maximumFractionDigits: 0,
+                        }).format(
+                          item.variations[0].sell_price_inc_tax
+                        )}{" "}
                       </span>
                     </div>
                     <Link
                       href="/cart"
-                      className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
+                      className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-68"
                       tabIndex={0}
                     >
-                      Add To Cart <i className="ph ph-shopping-cart" />
+                      <i className="ph ph-shopping-cart" /> Beli
                     </Link>
                   </div>
                 </div>
