@@ -4,7 +4,7 @@ import Link from "next/link";
 const RecommendedOne = () => {
   return (
     <section className="recommended pt-80">
-      <div className="container container-lg">
+      <div className="container">
         <div className="section-heading flex-between flex-wrap gap-16">
           <h5 className="mb-0">Recommended for you</h5>
           <ul

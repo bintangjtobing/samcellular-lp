@@ -25,7 +25,7 @@ const BestSellsOne = () => {
   }, []);
   return (
     <section className="best sells pb-80">
-      <div className="container container-lg">
+      <div className="container">
         <div className="section-heading">
           <div className="flex-between flex-wrap gap-8">
             <h5 className="mb-0">Daily Best Sells</h5>

@@ -6,7 +6,7 @@ import Link from "next/link";
 const PopularProductsThree = () => {
   return (
     <section className="popular-products-three pb-120 overflow-hidden">
-      <div className="container container-lg">
+      <div className="container">
         <div className="section-heading mb-24">
           <h5 className="mb-0 text-uppercase ">Popular Products</h5>
         </div>

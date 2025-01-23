@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import BannerTwo from "@/components/BannerTwo";
 import BigDealOne from "@/components/BigDealOne";
@@ -24,10 +24,9 @@ import ScrollToTopInit from "@/helper/ScrollToTopInit";
 import { useState } from "react";
 import BrandTwo from "@/components/BrandTwo";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-// 
+//
 const page = () => {
   const [queryClient] = useState(() => new QueryClient());
   return (
@@ -58,9 +57,6 @@ const page = () => {
 
       {/* FeaturedOne */}
       <FeaturedOne />
-
-      {/* BigDealOne */}
-      <BigDealOne />
 
       {/* DaySaleOne */}
       <DaySaleOne />

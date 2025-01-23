@@ -8,22 +8,22 @@ const BrandThree = () => {
   const NextArrow = ({ onClick }) => (
     <button
       onClick={onClick}
-      type='button'
-      id='topBrand-next'
-      className='slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-two-600 text-xl hover-bg-main-two-600 hover-text-white transition-1'
+      type="button"
+      id="topBrand-next"
+      className="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-two-600 text-xl hover-bg-main-two-600 hover-text-white transition-1"
     >
-      <i className='ph ph-caret-right'></i>
+      <i className="ph ph-caret-right"></i>
     </button>
   );
 
   const PrevArrow = ({ onClick }) => (
     <button
       onClick={onClick}
-      type='button'
-      id='topBrand-prev'
-      className='slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-two-600 text-xl hover-bg-main-two-600 hover-text-white transition-1'
+      type="button"
+      id="topBrand-prev"
+      className="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-two-600 text-xl hover-bg-main-two-600 hover-text-white transition-1"
     >
-      <i className='ph ph-caret-left'></i>
+      <i className="ph ph-caret-left"></i>
     </button>
   );
   const settings = {
@@ -83,42 +83,42 @@ const BrandThree = () => {
     ],
   };
   return (
-    <div className='top-brand three pb-80 overflow-hidden'>
-      <div className='container container-lg'>
-        <div className='border border-gray-100 p-24 rounded-16'>
-          <div className='section-heading mb-24'>
-            <div className='flex-between flex-wrap gap-8'>
-              <h5 className='mb-0 text-uppercase'>Top Brands</h5>
+    <div className="top-brand three pb-80 overflow-hidden">
+      <div className="container">
+        <div className="border border-gray-100 p-24 rounded-16">
+          <div className="section-heading mb-24">
+            <div className="flex-between flex-wrap gap-8">
+              <h5 className="mb-0 text-uppercase">Top Brands</h5>
             </div>
           </div>
-          <div className='top-brand__slider'>
+          <div className="top-brand__slider">
             <Slider {...settings}>
               <div>
-                <img src='assets/images/thumbs/brand-three-img1.png' alt='' />
+                <img src="assets/images/thumbs/brand-three-img1.png" alt="" />
               </div>
               <div>
-                <img src='assets/images/thumbs/brand-three-img2.png' alt='' />
+                <img src="assets/images/thumbs/brand-three-img2.png" alt="" />
               </div>
               <div>
-                <img src='assets/images/thumbs/brand-three-img3.png' alt='' />
+                <img src="assets/images/thumbs/brand-three-img3.png" alt="" />
               </div>
               <div>
-                <img src='assets/images/thumbs/brand-three-img4.png' alt='' />
+                <img src="assets/images/thumbs/brand-three-img4.png" alt="" />
               </div>
               <div>
-                <img src='assets/images/thumbs/brand-three-img5.png' alt='' />
+                <img src="assets/images/thumbs/brand-three-img5.png" alt="" />
               </div>
               <div>
-                <img src='assets/images/thumbs/brand-three-img6.png' alt='' />
+                <img src="assets/images/thumbs/brand-three-img6.png" alt="" />
               </div>
               <div>
-                <img src='assets/images/thumbs/brand-three-img7.png' alt='' />
+                <img src="assets/images/thumbs/brand-three-img7.png" alt="" />
               </div>
               <div>
-                <img src='assets/images/thumbs/brand-three-img8.png' alt='' />
+                <img src="assets/images/thumbs/brand-three-img8.png" alt="" />
               </div>
               <div>
-                <img src='assets/images/thumbs/brand-three-img5.png' alt='' />
+                <img src="assets/images/thumbs/brand-three-img5.png" alt="" />
               </div>
             </Slider>
           </div>

@@ -4,7 +4,7 @@ import Link from "next/link";
 const DeliveryOne = () => {
   return (
     <div className="delivery-section pt-40">
-      <div className="container container-lg">
+      <div className="container">
         <div className="delivery position-relative rounded-16 bg-main-600 p-16 flex-align gap-16 flex-wrap z-1">
           <img
             src="assets/images/bg/delivery-bg.png"

@@ -10,7 +10,7 @@ const FooterTwo = () => {
         <div className="footer-item-two-wrapper d-flex align-items-start flex-wrap">
           <div
             className="footer-item flex-grow-1"
-            style={{ maxWidth: "550px" }}
+            style={{ maxWidth: "500px" }}
           >
             {" "}
             {/* Adjusted width */}
@@ -124,26 +124,13 @@ const FooterTwo = () => {
             </ul>
           </div>
           <div className="footer-item">
-            <h6 className="">Shop on The Go</h6>
-            <p className="mb-16">Sam Cellular app is available. Get it now!</p>
-            <div className="flex-align gap-8 my-32">
-              <Link href="/https://www.apple.com/store" className="">
-                <img
-                  src="https://nextjs.marketpro.wowtheme7.com/assets/images/thumbs/store-img1.png"
-                  alt=""
-                />
-              </Link>
-              <Link
-                href="/https://play.google.com/store/apps?hl=en"
-                className=""
-              >
-                <img
-                  src="https://nextjs.marketpro.wowtheme7.com/assets/images/thumbs/store-img2.png"
-                  alt=""
-                />
-              </Link>
-            </div>
-            <ul className="flex-align gap-16">
+            <h6 className="">Accept payments</h6>
+            <img
+              src="https://res.cloudinary.com/dilb4d364/image/upload/v1737628929/payment-xendit_cdmzwr.png"
+              alt="SamCellular"
+              style={{ width: "400px" }}
+            />
+            <ul className="flex-align gap-16 pt-40">
               <li>
                 <Link
                   href="/https://www.facebook.com"

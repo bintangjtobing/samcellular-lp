@@ -26,7 +26,7 @@ const TrendingThree = () => {
 
   return (
     <section className="trending-products-three py-120 overflow-hidden">
-      <div className="container container-lg">
+      <div className="container">
         <div className="section-heading mb-24">
           <div className="flex-between flex-wrap gap-8">
             <h5 className="mb-0 text-uppercase">Trending Products</h5>

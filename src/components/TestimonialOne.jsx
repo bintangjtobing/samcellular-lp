@@ -12,22 +12,22 @@ const TestimonialOne = () => {
   const NextArrow = ({ onClick }) => (
     <button
       onClick={onClick}
-      type='button'
-      id='testi-next'
-      className='slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 text-white transition-1'
+      type="button"
+      id="testi-next"
+      className="slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 text-white transition-1"
     >
-      <i className='ph ph-caret-right'></i>
+      <i className="ph ph-caret-right"></i>
     </button>
   );
 
   const PrevArrow = ({ onClick }) => (
     <button
       onClick={onClick}
-      type='button'
-      id='testi-prev'
-      className='slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 text-white transition-1'
+      type="button"
+      id="testi-prev"
+      className="slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 text-white transition-1"
     >
-      <i className='ph ph-caret-left'></i>
+      <i className="ph ph-caret-left"></i>
     </button>
   );
 
@@ -93,47 +93,47 @@ const TestimonialOne = () => {
   ];
   return (
     <section
-      className='testimonials py-120 bg-neutral-600 bg-img overflow-hidden'
+      className="testimonials py-120 bg-neutral-600 bg-img overflow-hidden"
       style={{ backgroundImage: "url('assets/images/bg/pattern-two.png')" }}
     >
-      <div className='container container-lg'>
-        <div className='row gy-4 align-items-center'>
-          <div className='col-xl-1'>
-            <div className='section-heading mb-0 d-flex flex-column align-items-center writing-mode'>
-              <p className='text-white'>
+      <div className="container">
+        <div className="row gy-4 align-items-center">
+          <div className="col-xl-1">
+            <div className="section-heading mb-0 d-flex flex-column align-items-center writing-mode">
+              <p className="text-white">
                 Share information about your brand with your customers.
               </p>
-              <h5 className='text-white mb-0 text-uppercase'>
+              <h5 className="text-white mb-0 text-uppercase">
                 Customers Feedback
               </h5>
             </div>
           </div>
-          <div className='col-xl-11'>
-            <div className='position-relative'>
+          <div className="col-xl-11">
+            <div className="position-relative">
               <Slider
                 {...mainSliderSettings}
                 ref={mainSliderRef}
-                className='testimonials-slider'
+                className="testimonials-slider"
               >
                 {testimonialsData.map((testimonial, index) => (
-                  <div key={index} className='testimonials-item'>
-                    <h6 className='text-white text-uppercase mb-8 fw-medium'>
+                  <div key={index} className="testimonials-item">
+                    <h6 className="text-white text-uppercase mb-8 fw-medium">
                       {testimonial.name}
                     </h6>
-                    <span className='text-md text-white fw-normal'>
+                    <span className="text-md text-white fw-normal">
                       {testimonial.role}
                     </span>
-                    <div className='flex-align gap-8 mt-24'>
+                    <div className="flex-align gap-8 mt-24">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <span
                           key={i}
-                          className='text-15 fw-medium text-warning-600 d-flex'
+                          className="text-15 fw-medium text-warning-600 d-flex"
                         >
-                          <i className='ph-fill ph-star'></i>
+                          <i className="ph-fill ph-star"></i>
                         </span>
                       ))}
                     </div>
-                    <p className='testimonials-item__desc text-white text-2xl fw-normal mt-40 max-w-990'>
+                    <p className="testimonials-item__desc text-white text-2xl fw-normal mt-40 max-w-990">
                       {testimonial.desc}
                     </p>
                   </div>
@@ -143,25 +143,25 @@ const TestimonialOne = () => {
             <Slider
               {...thumbSliderSettings}
               ref={thumbSliderRef}
-              className='testimonials-thumbs-slider'
+              className="testimonials-thumbs-slider"
             >
               {testimonialsData.map((testimonial, index) => (
                 <div
                   key={index}
-                  className='testimonials-thumbs d-flex position-relative align-items-end justify-content-end'
+                  className="testimonials-thumbs d-flex position-relative align-items-end justify-content-end"
                 >
-                  <div className='testimonials-thumbs__img'>
+                  <div className="testimonials-thumbs__img">
                     <img
                       src={testimonial.img}
                       alt={testimonial.name}
-                      className='cover-img'
+                      className="cover-img"
                     />
                   </div>
-                  <div className='testimonials-thumbs__content position-absolute transition-2 bottom-0 start-50 translate-middle-x mb-16 text-center hidden opacity-0'>
-                    <h6 className='text-white text-uppercase mb-8 fw-medium'>
+                  <div className="testimonials-thumbs__content position-absolute transition-2 bottom-0 start-50 translate-middle-x mb-16 text-center hidden opacity-0">
+                    <h6 className="text-white text-uppercase mb-8 fw-medium">
                       {testimonial.name}
                     </h6>
-                    <span className='text-md text-white fw-normal'>
+                    <span className="text-md text-white fw-normal">
                       {testimonial.role}
                     </span>
                   </div>

@@ -13,7 +13,7 @@ const VendorsListTwo = () => {
   return (
     <section className="vendors-list py-80">
       <div className={`side-overlay ${active && "show"}`}></div>
-      <div className="container container-lg">
+      <div className="container">
         <div className="row gy-4">
           <div className="col-xxl-2 col-xl-3 col-lg-4">
             <div className={`shop-sidebar ${active && "active"}`}>

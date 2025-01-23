@@ -9,11 +9,11 @@ const BrandOne = () => {
     const { className, onClick } = props;
     return (
       <button
-        type='button'
+        type="button"
         onClick={onClick}
         className={` ${className} slick-next slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1`}
       >
-        <i className='ph ph-caret-right' />
+        <i className="ph ph-caret-right" />
       </button>
     );
   }
@@ -22,11 +22,11 @@ const BrandOne = () => {
 
     return (
       <button
-        type='button'
+        type="button"
         onClick={onClick}
         className={`${className} slick-prev slick-arrow flex-center rounded-circle border border-gray-100 hover-border-main-600 text-xl hover-bg-main-600 hover-text-white transition-1`}
       >
-        <i className='ph ph-caret-left' />
+        <i className="ph ph-caret-left" />
       </button>
     );
   }
@@ -80,50 +80,77 @@ const BrandOne = () => {
     ],
   };
   return (
-    <div className='brand py-80'>
-      <div className='container container-lg'>
-        <div className='brand-inner bg-color-one p-24 rounded-16'>
-          <div className='section-heading'>
-            <div className='flex-between flex-wrap gap-8'>
-              <h5 className='mb-0'>Shop by Brands</h5>
-              <div className='flex-align mr-point gap-16'>
+    <div className="brand py-80">
+      <div className="container">
+        <div className="brand-inner bg-color-one p-24 rounded-16">
+          <div className="section-heading">
+            <div className="flex-between flex-wrap gap-8">
+              <h5 className="mb-0">Shop by Brands</h5>
+              <div className="flex-align mr-point gap-16">
                 <Link
-                  href='/shop'
-                  className='text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline'
+                  href="/shop"
+                  className="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline"
                 >
                   View All Deals
                 </Link>
               </div>
             </div>
           </div>
-          <div className='brand-slider arrow-style-two'>
+          <div className="brand-slider arrow-style-two">
             <Slider {...settings}>
-              <div className='brand-item'>
-                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
+              <div className="brand-item">
+                <img
+                  src="https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png"
+                  alt=""
+                />
               </div>
-              <div className='brand-item'>
-                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
+              <div className="brand-item">
+                <img
+                  src="https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png"
+                  alt=""
+                />
               </div>
-              <div className='brand-item'>
-                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
+              <div className="brand-item">
+                <img
+                  src="https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png"
+                  alt=""
+                />
               </div>
-              <div className='brand-item'>
-                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
+              <div className="brand-item">
+                <img
+                  src="https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png"
+                  alt=""
+                />
               </div>
-              <div className='brand-item'>
-                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
+              <div className="brand-item">
+                <img
+                  src="https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png"
+                  alt=""
+                />
               </div>
-              <div className='brand-item'>
-                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
+              <div className="brand-item">
+                <img
+                  src="https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png"
+                  alt=""
+                />
               </div>
-              <div className='brand-item'>
-                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png' alt='' />
+              <div className="brand-item">
+                <img
+                  src="https://res.cloudinary.com/du0tz73ma/image/upload/v1737305786/582a56e7-37f0-43aa-b766-b6e51fa037b3.png"
+                  alt=""
+                />
               </div>
-              <div className='brand-item'>
-                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png' alt='' />
+              <div className="brand-item">
+                <img
+                  src="https://res.cloudinary.com/du0tz73ma/image/upload/v1737305910/61f4ce89-5ec5-41b7-b9e7-6db031560f08.png"
+                  alt=""
+                />
               </div>
-              <div className='brand-item'>
-                <img src='https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png' alt='' />
+              <div className="brand-item">
+                <img
+                  src="https://res.cloudinary.com/du0tz73ma/image/upload/v1737306027/cc5d4ece-2f09-4e18-943b-f3b5608a4a10.png"
+                  alt=""
+                />
               </div>
             </Slider>
           </div>

@@ -66,7 +66,7 @@ const TopSellingTwo = () => {
   };
   return (
     <section className="recommended">
-      <div className="container container-lg">
+      <div className="container">
         <div className="row g-12">
           <div className="col-xxl-4">
             <div className="position-relative rounded-16 bg-light-purple overflow-hidden p-28 z-1 text-center h-100">

@@ -150,7 +150,7 @@ const HeaderTwo = ({ category }) => {
       {/* ==================== Mobile Menu End Here ==================== */}
       {/* ======================= Middle Header Two Start ========================= */}
       <header className="header-middle style-two bg-color-neutral">
-        <div className="container container-lg">
+        <div className="container">
           <nav className="header-inner flex-between">
             {/* Logo Start */}
             <div className="logo">
@@ -434,7 +434,7 @@ const HeaderTwo = ({ category }) => {
           scroll && "fixed-header"
         }`}
       >
-        <div className="container container-lg">
+        <div className="container">
           <nav className="header-inner d-flex justify-content-between gap-8">
             <div className="flex-align menu-category-wrapper">
               {/* Category Dropdown Start */}

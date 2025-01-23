@@ -16,7 +16,7 @@ const ShopSection = () => {
   return (
     <section className="shop py-80">
       <div className={`side-overlay ${active && "show"}`}></div>
-      <div className="container container-lg">
+      <div className="container">
         <div className="row">
           {/* Sidebar Start */}
           <div className="col-lg-3">

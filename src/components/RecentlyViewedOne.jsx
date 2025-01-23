@@ -6,7 +6,7 @@ import Link from "next/link";
 const RecentlyViewedOne = () => {
   return (
     <section className="recently-viewed pt-80">
-      <div className="container container-lg">
+      <div className="container">
         <div className="border border-gray-100 p-24 rounded-16">
           <div className="section-heading mb-24">
             <div className="flex-between flex-wrap gap-8">

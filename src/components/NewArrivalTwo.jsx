@@ -77,7 +77,7 @@ const NewArrivalTwo = () => {
   };
   return (
     <section className="new-arrival pb-80">
-      <div className="container container-lg">
+      <div className="container">
         <div className="section-heading">
           <div className="flex-between flex-wrap gap-8">
             <h5 className="mb-0">You Might Also Like</h5>

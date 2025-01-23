@@ -4,7 +4,7 @@ import React, { memo, useEffect, useState } from "react";
 import Link from "next/link";
 import Slider from "react-slick";
 import { clientApiRequest } from "@/services/clientApiRequest";
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 
 const SampleNextArrow = memo(function SampleNextArrow(props) {
   const { className, onClick } = props;
@@ -42,10 +42,10 @@ const fetchProducts = async () => {
 
 const DealsOne = () => {
   const { data, error, isLoading } = useQuery({
-    queryKey: ['products'],
+    queryKey: ["products"],
     queryFn: fetchProducts,
   });
-  
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -106,7 +106,7 @@ const DealsOne = () => {
   };
   return (
     <section className="deals-weeek pt-80">
-      <div className="container container-lg">
+      <div className="container">
         <div className="border border-gray-100 p-24 rounded-16">
           <div className="section-heading mb-24">
             <div className="flex-between flex-wrap gap-8">
@@ -128,7 +128,10 @@ const DealsOne = () => {
               className="position-absolute inset-block-start-0 inset-block-start-0 w-100 h-100 z-n1 object-fit-cover"
             />
             <div className="d-lg-block d-none ps-32 flex-shrink-0">
-              <img src="assets/images/thumbs/week-deal-img1.png" alt="" />
+              <img
+                src="https://res.cloudinary.com/dilb4d364/image/upload/v1737629269/46047a0c-cd16-4bef-9a05-75b17e3f990a.png"
+                alt=""
+              />
             </div>
             <div className="deal-week-box__content px-sm-4 d-block w-100 text-center">
               <h6 className="mb-20">Apple AirPods Max, Over Ear Headphones</h6>
@@ -155,92 +158,109 @@ const DealsOne = () => {
             </div>
             <div className="d-lg-block d-none flex-shrink-0 pe-xl-5">
               <div className="me-xxl-5">
-                <img src="assets/images/thumbs/week-deal-img2.png" alt="" />
+                <img
+                  src="https://res.cloudinary.com/dilb4d364/image/upload/v1737629324/fc0636db-b61b-4072-b7ad-cbc25675ac79.png"
+                  alt=""
+                />
               </div>
             </div>
           </div>
           <div className="deals-week-slider arrow-style-two">
             <Slider {...settings}>
-              {data && data.map((item, index) => (
-                <div key={index}>
-                  <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                    <Link
-                      href="/product-details-two"
-                      className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                    >
-                      <span className="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
-                        Sold
-                      </span>
-                      <img
-                        src={item.image_url}
-                        alt=""
-                        className="w-auto w-[10rem]"
-                      />
-                    </Link>
-                    <div className="product-card__content mt-16">
-                      <div className="flex-align gap-6 w-full">
-                        <span className="text-xs fw-medium text-gray-500">
-                          4.8
+              {data &&
+                data.map((item, index) => (
+                  <div key={index}>
+                    <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                      <Link
+                        href="/product-details-two"
+                        className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
+                      >
+                        <span className="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
+                          Sold
                         </span>
-                        <span className="text-15 fw-medium text-warning-600 d-flex">
-                          <i className="ph-fill ph-star" />
-                        </span>
-                        <span className="text-xs fw-medium text-gray-500">
-                          (17k)
-                        </span>
-                      </div>
-                      <h6 className="title text-lg fw-semibold mt-12 mb-8">
+                        <img
+                          src={item.image_url}
+                          style={{
+                            width: "126px",
+                            height: "140px",
+                            objectFit: "cover",
+                          }}
+                          alt=""
+                          className="w-auto w-[10rem]"
+                        />
+                      </Link>
+                      <div className="product-card__content mt-16">
+                        <div className="flex-align gap-6 w-full">
+                          <span className="text-xs fw-medium text-gray-500">
+                            4.8
+                          </span>
+                          <span className="text-15 fw-medium text-warning-600 d-flex">
+                            <i className="ph-fill ph-star" />
+                          </span>
+                          <span className="text-xs fw-medium text-gray-500">
+                            (17k)
+                          </span>
+                        </div>
+                        <h6 className="title text-lg fw-semibold mt-12 mb-8">
+                          <Link
+                            href="/product-details-two"
+                            className="link text-line-2"
+                            tabIndex={0}
+                          >
+                            {item.name}
+                          </Link>
+                        </h6>
+                        <div className="flex-align gap-4">
+                          <span className="text-tertiary-600 text-md d-flex">
+                            <i className="ph-fill ph-storefront" />
+                          </span>
+                          <span className="text-gray-500 text-xs">
+                            by SamCellular
+                          </span>
+                        </div>
+                        <div className="mt-8">
+                          <div
+                            className="progress w-100 bg-color-three rounded-pill h-4"
+                            role="progressbar"
+                            aria-label="Basic example"
+                            aria-valuenow={35}
+                            aria-valuemin={0}
+                            aria-valuemax={100}
+                          >
+                            <div
+                              className="progress-bar bg-tertiary-600 rounded-pill"
+                              style={{ width: "35%" }}
+                            />
+                          </div>
+                          <span className="text-gray-900 text-xs fw-medium mt-8">
+                            Sold: 18/35
+                          </span>
+                        </div>
+                        <div className="product-card__price my-20">
+                          <span className="text-heading text-md fw-semibold ">
+                            {new Intl.NumberFormat("id-ID", {
+                              style: "currency",
+                              currency: "IDR",
+                              maximumFractionDigits: 0,
+                            }).format(
+                              item.variations[0].sell_price_inc_tax
+                            )}{" "}
+                            <span className="text-gray-500 fw-normal">
+                              /Qty
+                            </span>{" "}
+                          </span>
+                        </div>
                         <Link
-                          href="/product-details-two"
-                          className="link text-line-2"
+                          href="/cart"
+                          className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
                           tabIndex={0}
                         >
-                          {item.name}
+                          Add To Cart <i className="ph ph-shopping-cart" />
                         </Link>
-                      </h6>
-                      <div className="flex-align gap-4">
-                        <span className="text-tertiary-600 text-md d-flex">
-                          <i className="ph-fill ph-storefront" />
-                        </span>
-                        <span className="text-gray-500 text-xs">
-                          by SamCellular
-                        </span>
                       </div>
-                      <div className="mt-8">
-                        <div
-                          className="progress w-100 bg-color-three rounded-pill h-4"
-                          role="progressbar"
-                          aria-label="Basic example"
-                          aria-valuenow={35}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                        >
-                          <div
-                            className="progress-bar bg-tertiary-600 rounded-pill"
-                            style={{ width: "35%" }}
-                          />
-                        </div>
-                        <span className="text-gray-900 text-xs fw-medium mt-8">
-                          Sold: 18/35
-                        </span>
-                      </div>
-                      <div className="product-card__price my-20">
-                        <span className="text-heading text-md fw-semibold ">
-                          Rp. 23.999.999{" "}
-                          <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                        </span>
-                      </div>
-                      <Link
-                        href="/cart"
-                        className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                        tabIndex={0}
-                      >
-                        Add To Cart <i className="ph ph-shopping-cart" />
-                      </Link>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
               {/* <div>
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <Link

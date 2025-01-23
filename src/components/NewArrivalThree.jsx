@@ -4,7 +4,7 @@ import Link from "next/link";
 const NewArrivalThree = () => {
   return (
     <section className="new-arrival-three py-120 overflow-hidden">
-      <div className="container container-lg">
+      <div className="container">
         <div className="section-heading text-center ">
           <h5 className="mb-0 text-uppercase ">New Arrivals</h5>
         </div>

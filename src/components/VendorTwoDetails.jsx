@@ -14,7 +14,7 @@ const VendorTwoDetails = () => {
   return (
     <section className="vendor-two-details py-80">
       <div className={`side-overlay ${active && "show"}`}></div>
-      <div className="container container-lg">
+      <div className="container">
         <div className="vendor-two-details-wrapper d-flex flex-wrap align-items-start gap-24">
           {/* Shop Sidebar Start */}
           <div className={`shop-sidebar ${active && "active"}`}>
