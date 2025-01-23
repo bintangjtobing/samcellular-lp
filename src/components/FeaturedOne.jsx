@@ -104,17 +104,17 @@ const FeaturedOne = () => {
                                 </span>
                                 <img
                                   src={item.image_url}
-                                  alt="marketpro"
-                                  className="w-auto w-[10rem]"
                                   style={{
                                     width: "126px",
                                     height: "140px",
                                     objectFit: "cover",
                                   }}
+                                  alt=""
+                                  className="w-auto w-[20rem]"
                                 />
                               </Link>
-                              <div className="product-card__content my-20 flex-grow-1">
-                                <h6 className="title text-lg fw-semibold mb-12">
+                              <div className="product-card__content mt-16 flex-grow-1">
+                                <h6 className="title fw-medium mt-12 mb-0 text-14">
                                   <Link
                                     href="/product-details-two"
                                     className="link text-line-2"
@@ -123,41 +123,42 @@ const FeaturedOne = () => {
                                     {item.name}
                                   </Link>
                                 </h6>
-                                <div className="flex-align gap-6 mb-12">
-                                  <span className="text-xs fw-medium text-gray-500">
-                                    4.8
-                                  </span>
-                                  <span className="text-15 fw-medium text-warning-600 d-flex">
-                                    <i className="ph-fill ph-star" />
-                                  </span>
-                                  <span className="text-xs fw-medium text-gray-500">
-                                    (17k)
+                                <div className="product-card__price mt-5 mb-20">
+                                  <span className="text-heading text-lg fw-semibold ">
+                                    {new Intl.NumberFormat("id-ID", {
+                                      style: "currency",
+                                      currency: "IDR",
+                                      maximumFractionDigits: 0,
+                                    }).format(
+                                      item.variations[0].sell_price_inc_tax
+                                    )}{" "}
                                   </span>
                                 </div>
                                 <div className="flex-align gap-4">
-                                  <span className="text-main-two-600 text-md d-flex">
+                                  <span className="text-tertiary-600 text-md d-flex">
                                     <i className="ph-fill ph-storefront" />
                                   </span>
                                   <span className="text-gray-500 text-xs">
                                     by SamCellular
                                   </span>
                                 </div>
-                                <div className="product-card__price my-20">
-                                  <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                                  <span className="text-heading text-md fw-semibold ">
-                                    Rp. 23.999.999{" "}
-                                    <span className="text-gray-500 fw-normal">
-                                      /Qty
-                                    </span>{" "}
+                                <div className="flex-align gap-6 w-full mb-10">
+                                  <span className="text-15 fw-medium text-warning-600 d-flex">
+                                    <i className="ph-fill ph-star" />
+                                  </span>
+                                  <span className="text-xs fw-medium text-gray-500">
+                                    4.8 |
+                                  </span>
+                                  <span className="text-xs fw-medium text-gray-500">
+                                    17rb+ terjual
                                   </span>
                                 </div>
                                 <Link
                                   href="/cart"
-                                  className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
+                                  className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-68"
                                   tabIndex={0}
                                 >
-                                  Add To Cart{" "}
-                                  <i className="ph ph-shopping-cart" />
+                                  <i className="ph ph-shopping-cart" /> Beli
                                 </Link>
                               </div>
                             </div>
@@ -183,8 +184,8 @@ const FeaturedOne = () => {
                                   className="w-auto w-[10rem] aspect-square"
                                 />
                               </Link>
-                              <div className="product-card__content my-20 flex-grow-1">
-                                <h6 className="title text-lg fw-semibold mb-12">
+                              <div className="product-card__content mt-16 flex-grow-1">
+                                <h6 className="title fw-medium mt-12 mb-0 text-14">
                                   <Link
                                     href="/product-details-two"
                                     className="link text-line-2"
@@ -193,41 +194,42 @@ const FeaturedOne = () => {
                                     {item.name}
                                   </Link>
                                 </h6>
-                                <div className="flex-align gap-6 mb-12">
-                                  <span className="text-xs fw-medium text-gray-500">
-                                    4.8
-                                  </span>
-                                  <span className="text-15 fw-medium text-warning-600 d-flex">
-                                    <i className="ph-fill ph-star" />
-                                  </span>
-                                  <span className="text-xs fw-medium text-gray-500">
-                                    (17k)
+                                <div className="product-card__price mt-5 mb-20">
+                                  <span className="text-heading text-lg fw-semibold ">
+                                    {new Intl.NumberFormat("id-ID", {
+                                      style: "currency",
+                                      currency: "IDR",
+                                      maximumFractionDigits: 0,
+                                    }).format(
+                                      item.variations[0].sell_price_inc_tax
+                                    )}{" "}
                                   </span>
                                 </div>
                                 <div className="flex-align gap-4">
-                                  <span className="text-main-two-600 text-md d-flex">
+                                  <span className="text-tertiary-600 text-md d-flex">
                                     <i className="ph-fill ph-storefront" />
                                   </span>
                                   <span className="text-gray-500 text-xs">
                                     by SamCellular
                                   </span>
                                 </div>
-                                <div className="product-card__price my-20">
-                                  <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                                  <span className="text-heading text-md fw-semibold ">
-                                    Rp. 23.999.999{" "}
-                                    <span className="text-gray-500 fw-normal">
-                                      /Qty
-                                    </span>{" "}
+                                <div className="flex-align gap-6 w-full mb-10">
+                                  <span className="text-15 fw-medium text-warning-600 d-flex">
+                                    <i className="ph-fill ph-star" />
+                                  </span>
+                                  <span className="text-xs fw-medium text-gray-500">
+                                    4.8 |
+                                  </span>
+                                  <span className="text-xs fw-medium text-gray-500">
+                                    17rb+ terjual
                                   </span>
                                 </div>
                                 <Link
                                   href="/cart"
-                                  className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
+                                  className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-68"
                                   tabIndex={0}
                                 >
-                                  Add To Cart{" "}
-                                  <i className="ph ph-shopping-cart" />
+                                  <i className="ph ph-shopping-cart" /> Beli
                                 </Link>
                               </div>
                             </div>
