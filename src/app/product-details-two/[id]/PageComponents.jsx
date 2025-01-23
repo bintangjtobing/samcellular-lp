@@ -17,10 +17,10 @@ const PageComponents = ({ id }) => {
     return (
         <QueryClientProvider client={queryClient}>
             {/* ColorInit */}
-            <ColorInit color={true} />
+            <ColorInit color={false} />
 
             {/* ScrollToTop */}
-            <ScrollToTopInit color="#FA6400" />
+            <ScrollToTopInit color="#4B4B4B" />
 
             {/* Preloader */}
             <Preloader />
