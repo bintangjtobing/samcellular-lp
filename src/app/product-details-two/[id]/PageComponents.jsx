@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import BottomFooter from "@/components/BottomFooter";
 import Breadcrumb from "@/components/Breadcrumb";
 import FooterTwo from "@/components/FooterTwo";
@@ -13,40 +13,40 @@ import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const PageComponents = ({ id }) => {
-    const [queryClient] = useState(() => new QueryClient());
-    return (
-        <QueryClientProvider client={queryClient}>
-            {/* ColorInit */}
-            <ColorInit color={false} />
+  const [queryClient] = useState(() => new QueryClient());
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* ColorInit */}
+      <ColorInit color={false} />
 
-            {/* ScrollToTop */}
-            <ScrollToTopInit color="#4B4B4B" />
+      {/* ScrollToTop */}
+      <ScrollToTopInit color="#4B4B4B" />
 
-            {/* Preloader */}
-            <Preloader />
+      {/* Preloader */}
+      <Preloader />
 
-            {/* HeaderTwo */}
-            <HeaderTwo category={true} />
+      {/* HeaderTwo */}
+      <HeaderTwo category={false} />
 
-            {/* Breadcrumb */}
-            <Breadcrumb title={"Product Details"} />
+      {/* Breadcrumb */}
+      <Breadcrumb title={"Product Details"} />
 
-            {/* ProductDetailsTwo */}
-            <ProductDetailsTwo id={id} />
+      {/* ProductDetailsTwo */}
+      <ProductDetailsTwo id={id} />
 
-            {/* NewArrivalTwo */}
-            <NewArrivalTwo />
+      {/* NewArrivalTwo */}
+      <NewArrivalTwo />
 
-            {/* ShippingOne */}
-            <ShippingTwo />
+      {/* ShippingOne */}
+      <ShippingTwo />
 
-            {/* FooterTwo */}
-            <FooterTwo />
+      {/* FooterTwo */}
+      <FooterTwo />
 
-            {/* BottomFooter */}
-            <BottomFooter />
-        </QueryClientProvider>
-    );
+      {/* BottomFooter */}
+      <BottomFooter />
+    </QueryClientProvider>
+  );
 };
 
 export default PageComponents;

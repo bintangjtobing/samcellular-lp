@@ -16,7 +16,10 @@ const FooterTwo = () => {
             {/* Adjusted width */}
             <div className="footer-item__logo">
               <Link href="/">
-                <img src="assets/images/logo/logo-two.png" alt="" />
+                <img
+                  src="https://res.cloudinary.com/dilb4d364/image/upload/v1737661961/dbf1c02b-7254-4187-9236-41d26e03d77f.png"
+                  alt=""
+                />
               </Link>
             </div>
             <p className="mb-24">

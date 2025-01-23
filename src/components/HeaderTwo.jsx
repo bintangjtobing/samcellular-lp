@@ -155,7 +155,10 @@ const HeaderTwo = ({ category }) => {
             {/* Logo Start */}
             <div className="logo">
               <Link href="/" className="link">
-                <img src="assets/images/logo/logo-two.png" alt="Logo" />
+                <img
+                  src="https://res.cloudinary.com/dilb4d364/image/upload/v1737661961/dbf1c02b-7254-4187-9236-41d26e03d77f.png"
+                  alt="Logo"
+                />
               </Link>
             </div>
             {/* Logo End  */}

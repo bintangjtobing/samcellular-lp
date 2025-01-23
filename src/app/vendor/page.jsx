@@ -22,7 +22,7 @@ const page = () => {
       <ColorInit color={false} />
 
       {/* ScrollToTop */}
-      <ScrollToTopInit color="#299E60" />
+      <ScrollToTopInit color="#4b4b4b" />
 
       {/* Preloader */}
       <Preloader />

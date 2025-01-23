@@ -7,48 +7,46 @@ import { clientApiRequest } from "@/services/clientApiRequest";
 
 import Link from "next/link";
 
-
 const fetchDataCategories = async () => {
   const { data } = await clientApiRequest({
     url: "categories",
-    method: 'GET',
-    parameter: 'business_id=1'
-  })
-  return data
-}
+    method: "GET",
+    parameter: "business_id=1",
+  });
+  return data;
+};
 
 const fetchDataBrands = async () => {
   const { data } = await clientApiRequest({
     url: "brands",
-    method: 'GET',
-    parameter: 'business_id=1'
-  })
-  return data
-}
-
+    method: "GET",
+    parameter: "business_id=1",
+  });
+  return data;
+};
 
 const ShopSection = () => {
   const categoriesQuery = useQuery({
     queryKey: ["categories"],
-    queryFn: fetchDataCategories
-  })
+    queryFn: fetchDataCategories,
+  });
 
   const brandsQuery = useQuery({
     queryKey: ["brands"],
-    queryFn: fetchDataBrands
-  })
+    queryFn: fetchDataBrands,
+  });
 
   const productQuery = useQuery({
-    queryKey: ['products'],
+    queryKey: ["products"],
     queryFn: async () => {
       const { data } = await clientApiRequest({
         url: "products",
-        parameter: 'business_id=1',
-        method: "GET"
-      })
-      return data
-    }
-  })
+        parameter: "business_id=1",
+        method: "GET",
+      });
+      return data;
+    },
+  });
 
   let [grid, setGrid] = useState(false);
 
@@ -77,16 +75,17 @@ const ShopSection = () => {
                   Product Category
                 </h6>
                 <ul className="max-h-540 overflow-y-auto scroll-sm">
-                  {categoriesQuery.data && categoriesQuery.data.map((item, index) => (
-                    <li key={index} className="mb-24">
-                      <Link
-                        href="/product-details-two"
-                        className="text-gray-900 hover-text-main-600"
-                      >
-                        {item.name} ({item.sub_categories.length})
-                      </Link>
-                    </li>
-                  ))}
+                  {categoriesQuery.data &&
+                    categoriesQuery.data.map((item, index) => (
+                      <li key={index} className="mb-24">
+                        <Link
+                          href="/product-details-two"
+                          className="text-gray-900 hover-text-main-600"
+                        >
+                          {item.name} ({item.sub_categories.length})
+                        </Link>
+                      </li>
+                    ))}
                 </ul>
               </div>
               <div className="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
@@ -229,25 +228,26 @@ const ShopSection = () => {
                   Filter by Brand
                 </h6>
                 <ul className="max-h-540 overflow-y-auto scroll-sm">
-                  {brandsQuery.data && brandsQuery.data.map((item, index) => (
-                    <li key={index} className="mb-24">
-                      <div className="form-check common-check common-radio">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="brands"
-                          id={item.id}
-                        />
-                        <label className="form-check-label" htmlFor={item.name}>
-                          {item.name}
-                        </label>
-                      </div>
-                    </li>
-                  ))}
+                  {brandsQuery.data &&
+                    brandsQuery.data.map((item, index) => (
+                      <li key={index} className="mb-24">
+                        <div className="form-check common-check common-radio">
+                          <input
+                            className="form-check-input"
+                            type="radio"
+                            name="brands"
+                            id={item.id}
+                          />
+                          <label
+                            className="form-check-label"
+                            htmlFor={item.name}
+                          >
+                            {item.name}
+                          </label>
+                        </div>
+                      </li>
+                    ))}
                 </ul>
-              </div>
-              <div className="shop-sidebar__box rounded-8">
-                <img src="assets/images/thumbs/advertise-img1.png" alt="" />
               </div>
             </div>
           </div>
@@ -262,16 +262,18 @@ const ShopSection = () => {
                   <button
                     onClick={() => setGrid(true)}
                     type="button"
-                    className={`w-44 h-44 flex-center border rounded-6 text-2xl list-btn border-gray-100 ${grid === true && "border-main-600 text-white bg-main-600"
-                      }`}
+                    className={`w-44 h-44 flex-center border rounded-6 text-2xl list-btn border-gray-100 ${
+                      grid === true && "border-main-600 text-white bg-main-600"
+                    }`}
                   >
                     <i className="ph-bold ph-list-dashes" />
                   </button>
                   <button
                     onClick={() => setGrid(false)}
                     type="button"
-                    className={`w-44 h-44 flex-center border rounded-6 text-2xl grid-btn border-gray-100 ${grid === false && "border-main-600 text-white bg-main-600"
-                      }`}
+                    className={`w-44 h-44 flex-center border rounded-6 text-2xl grid-btn border-gray-100 ${
+                      grid === false && "border-main-600 text-white bg-main-600"
+                    }`}
                   >
                     <i className="ph ph-squares-four" />
                   </button>
@@ -305,80 +307,78 @@ const ShopSection = () => {
             </div>
             {/* Top End */}
             <div className={`list-grid-wrapper ${grid && "list-view"}`}>
-              {productQuery.data && productQuery.data.map((item, index) => (
-                <div key={index} className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                  <Link
-                    href={`/product-details-two/${item.id}`}
-                    className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
+              {productQuery.data &&
+                productQuery.data.map((item, index) => (
+                  <div
+                    key={index}
+                    className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2"
                   >
-                    <img
-                      src={item.image_url}
-                      alt=""
-                      className="w-auto w-[1rem]"
-                    />
-                    <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
-                      Hot{" "}
-                    </span>
-                  </Link>
-                  <div className="product-card__content mt-16">
-                    <h6 className="title text-lg fw-semibold mt-12 mb-8">
+                    <Link
+                      href={`/product-details-two/${item.id}`}
+                      className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
+                    >
+                      <img
+                        src={item.image_url}
+                        style={{
+                          width: "126px",
+                          height: "140px",
+                          objectFit: "cover",
+                        }}
+                        alt=""
+                        className="w-auto w-[1rem]"
+                      />
+                      <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
+                        Hot{" "}
+                      </span>
+                    </Link>
+                    <div className="product-card__content mt-16">
+                      <h6 className="title fw-medium mt-12 mb-0 text-14">
+                        <Link
+                          href={`/product-details-two/${item.id}`}
+                          className="link text-line-2"
+                          tabIndex={0}
+                        >
+                          {item.name}
+                        </Link>
+                      </h6>
+                      <div className="product-card__price mt-5 mb-20">
+                        <span className="text-heading text-lg fw-semibold ">
+                          {new Intl.NumberFormat("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                            maximumFractionDigits: 0,
+                          }).format(item.variations[0].sell_price_inc_tax)}{" "}
+                        </span>
+                      </div>
+                      <div className="flex-align gap-4">
+                        <span className="text-tertiary-600 text-md d-flex">
+                          <i className="ph-fill ph-storefront" />
+                        </span>
+                        <span className="text-gray-500 text-xs">
+                          by SamCellular
+                        </span>
+                      </div>
+                      <div className="flex-align gap-6 w-full mb-10">
+                        <span className="text-15 fw-medium text-warning-600 d-flex">
+                          <i className="ph-fill ph-star" />
+                        </span>
+                        <span className="text-xs fw-medium text-gray-500">
+                          4.8 |
+                        </span>
+                        <span className="text-xs fw-medium text-gray-500">
+                          17rb+ terjual
+                        </span>
+                      </div>
                       <Link
-                        href="/product-details-two"
-                        className="link text-line-2"
+                        href="/cart"
+                        className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-72"
                         tabIndex={0}
                       >
-                        {item.name}
+                        <i className="ph ph-shopping-cart" /> Beli
                       </Link>
-                    </h6>
-                    <div className="flex-align mb-20 mt-16 gap-6">
-                      <span className="text-xs fw-medium text-gray-500">4.8</span>
-                      <span className="text-15 fw-medium text-warning-600 d-flex">
-                        <i className="ph-fill ph-star" />
-                      </span>
-                      <span className="text-xs fw-medium text-gray-500">
-                        (17k)
-                      </span>
                     </div>
-                    <div className="mt-8">
-                      <div
-                        className="progress w-100 bg-color-three rounded-pill h-4"
-                        role="progressbar"
-                        aria-label="Basic example"
-                        aria-valuenow={35}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                      >
-                        <div
-                          className="progress-bar bg-main-two-600 rounded-pill"
-                          style={{ width: "35%" }}
-                        />
-                      </div>
-                      <span className="text-gray-900 text-xs fw-medium mt-8">
-                        Sold: 18/35
-                      </span>
-                    </div>
-                    <div className="product-card__price my-20">
-                      <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                      <span className="text-heading text-md fw-semibold ">
-                        {new Intl.NumberFormat("id-ID", {
-                          style: "currency",
-                          currency: "IDR",
-                          maximumFractionDigits: 0,
-                        }).format(
-                          item.variations[0].sell_price_inc_tax
-                        )}{" "}
-                      </span>
-                    </div>
-                    <Link
-                      href="/cart"
-                      className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-68"
-                      tabIndex={0}
-                    >
-                      <i className="ph ph-shopping-cart" /> Beli
-                    </Link>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
             {/* Pagination Start */}
             <ul className="pagination flex-center flex-wrap gap-16">
@@ -396,54 +396,6 @@ const ShopSection = () => {
                   href="#"
                 >
                   01
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link
-                  className="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100"
-                  href="#"
-                >
-                  02
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link
-                  className="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100"
-                  href="#"
-                >
-                  03
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link
-                  className="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100"
-                  href="#"
-                >
-                  04
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link
-                  className="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100"
-                  href="#"
-                >
-                  05
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link
-                  className="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100"
-                  href="#"
-                >
-                  06
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link
-                  className="page-link h-64 w-64 flex-center text-md rounded-8 fw-medium text-neutral-600 border border-gray-100"
-                  href="#"
-                >
-                  07
                 </Link>
               </li>
               <li className="page-item">
