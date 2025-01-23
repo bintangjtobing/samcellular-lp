@@ -2,11 +2,23 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import { clientApiRequest } from "@/services/clientApiRequest";
 
 import dynamic from "next/dynamic";
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
-const ProductDetailsTwo = () => {
+const ProductDetailsTwo = ({id}) => {
+  const {data} = useQuery({
+    queryKey: ['product-details'],
+    queryFn: async () => {
+      const {data} = await clientApiRequest({
+        url: 'products/'+id,
+        method: 'GET'
+      })
+      return data
+    }
+  })
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -27,11 +39,11 @@ const ProductDetailsTwo = () => {
     return () => clearInterval(interval);
   }, []);
   const productImages = [
-    "assets/images/thumbs/product-details-two-thumb1.png",
-    "assets/images/thumbs/product-details-two-thumb2.png",
-    "assets/images/thumbs/product-details-two-thumb3.png",
-    "assets/images/thumbs/product-details-two-thumb1.png",
-    "assets/images/thumbs/product-details-two-thumb2.png",
+    "../assets/images/thumbs/product-details-two-thumb1.png",
+    "../assets/images/thumbs/product-details-two-thumb2.png",
+    "../assets/images/thumbs/product-details-two-thumb3.png",
+    "../assets/images/thumbs/product-details-two-thumb1.png",
+    "../assets/images/thumbs/product-details-two-thumb2.png",
   ];
 
   // increment & decrement
@@ -60,8 +72,8 @@ const ProductDetailsTwo = () => {
                 <div className="product-details__left">
                   <div className="product-details__thumb-slider border border-gray-100 rounded-16">
                     <div className="">
-                      <div className="product-details__thumb flex-center h-100">
-                        <img src={mainImage} alt="Main Product" />
+                      <div className="product-details__thumb flex-center">
+                        <img src={data && data.image_url} alt="Main Product" />
                       </div>
                     </div>
                   </div>
@@ -122,8 +134,7 @@ const ProductDetailsTwo = () => {
                     </span>
                   </div>
                   <h5 className="mb-12">
-                    HP Chromebook With Intel Celeron, 4GB Memory &amp; 64GB eMMC
-                    - Modern Gray
+                    {data && data.name}
                   </h5>
                   <div className="flex-align flex-wrap gap-12">
                     <div className="flex-align gap-12 flex-wrap">
@@ -172,7 +183,7 @@ const ProductDetailsTwo = () => {
                         <i className="ph-fill ph-seal-percent text-xl" />
                         -10%
                       </div>
-                      <h6 className="mb-0">USD 320.99</h6>
+                      <h6 className="mb-0">IDR {data && data?.variations[0].default_sell_price}</h6>
                     </div>
                     <div className="flex-align gap-8">
                       <span className="text-gray-700">Regular Price</span>

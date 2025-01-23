@@ -2,10 +2,54 @@
 
 import React, { useState } from "react";
 import ReactSlider from "react-slider";
+import { useQuery } from "@tanstack/react-query";
+import { clientApiRequest } from "@/services/clientApiRequest";
 
 import Link from "next/link";
 
+
+const fetchDataCategories = async () => {
+  const { data } = await clientApiRequest({
+    url: "categories",
+    method: 'GET',
+    parameter: 'business_id=1'
+  })
+  return data
+}
+
+const fetchDataBrands = async () => {
+  const { data } = await clientApiRequest({
+    url: "brands",
+    method: 'GET',
+    parameter: 'business_id=1'
+  })
+  return data
+}
+
+
 const ShopSection = () => {
+  const categoriesQuery = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchDataCategories
+  })
+
+  const brandsQuery = useQuery({
+    queryKey: ["brands"],
+    queryFn: fetchDataBrands
+  })
+
+  const productQuery = useQuery({
+    queryKey: ['products'],
+    queryFn: async () => {
+      const { data } = await clientApiRequest({
+        url: "products",
+        parameter: 'business_id=1',
+        method: "GET"
+      })
+      return data
+    }
+  })
+
   let [grid, setGrid] = useState(false);
 
   let [active, setActive] = useState(false);
@@ -33,110 +77,16 @@ const ShopSection = () => {
                   Product Category
                 </h6>
                 <ul className="max-h-540 overflow-y-auto scroll-sm">
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Mobile &amp; Accessories (12)
-                    </Link>
-                  </li>
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Laptop (12)
-                    </Link>
-                  </li>
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Electronics (12)
-                    </Link>
-                  </li>
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Smart Watch (12)
-                    </Link>
-                  </li>
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Storage (12)
-                    </Link>
-                  </li>
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Portable Devices (12)
-                    </Link>
-                  </li>
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Action Camera (12)
-                    </Link>
-                  </li>
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Smart Gadget (12)
-                    </Link>
-                  </li>
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Monitor (12)
-                    </Link>
-                  </li>
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Smart TV (12)
-                    </Link>
-                  </li>
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Camera (12)
-                    </Link>
-                  </li>
-                  <li className="mb-24">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Monitor Stand (12)
-                    </Link>
-                  </li>
-                  <li className="mb-0">
-                    <Link
-                      href="/product-details-two"
-                      className="text-gray-900 hover-text-main-600"
-                    >
-                      Headphone (12)
-                    </Link>
-                  </li>
+                  {categoriesQuery.data && categoriesQuery.data.map((item, index) => (
+                    <li key={index} className="mb-24">
+                      <Link
+                        href="/product-details-two"
+                        className="text-gray-900 hover-text-main-600"
+                      >
+                        {item.name} ({item.sub_categories.length})
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
@@ -176,246 +126,6 @@ const ShopSection = () => {
                 </div>
               </div>
 
-              <div className="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
-                <h6 className="text-xl border-bottom border-gray-100 pb-24 mb-24">
-                  Filter by Rating
-                </h6>
-                <div className="flex-align gap-8 position-relative mb-20">
-                  <label
-                    className="position-absolute w-100 h-100 cursor-pointer"
-                    htmlFor="rating5"
-                  >
-                    {" "}
-                  </label>
-                  <div className="common-check common-radio mb-0">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="rating5"
-                    />
-                  </div>
-                  <div
-                    className="progress w-100 bg-gray-100 rounded-pill h-8"
-                    role="progressbar"
-                    aria-label="Basic example"
-                    aria-valuenow={70}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                  >
-                    <div
-                      className="progress-bar bg-main-600 rounded-pill"
-                      style={{ width: "70%" }}
-                    />
-                  </div>
-                  <div className="flex-align gap-4">
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                  </div>
-                  <span className="text-gray-900 flex-shrink-0">124</span>
-                </div>
-                <div className="flex-align gap-8 position-relative mb-20">
-                  <label
-                    className="position-absolute w-100 h-100 cursor-pointer"
-                    htmlFor="rating4"
-                  >
-                    {" "}
-                  </label>
-                  <div className="common-check common-radio mb-0">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="rating4"
-                    />
-                  </div>
-                  <div
-                    className="progress w-100 bg-gray-100 rounded-pill h-8"
-                    role="progressbar"
-                    aria-label="Basic example"
-                    aria-valuenow={50}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                  >
-                    <div
-                      className="progress-bar bg-main-600 rounded-pill"
-                      style={{ width: "50%" }}
-                    />
-                  </div>
-                  <div className="flex-align gap-4">
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-400 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                  </div>
-                  <span className="text-gray-900 flex-shrink-0">52</span>
-                </div>
-                <div className="flex-align gap-8 position-relative mb-20">
-                  <label
-                    className="position-absolute w-100 h-100 cursor-pointer"
-                    htmlFor="rating3"
-                  >
-                    {" "}
-                  </label>
-                  <div className="common-check common-radio mb-0">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="rating3"
-                    />
-                  </div>
-                  <div
-                    className="progress w-100 bg-gray-100 rounded-pill h-8"
-                    role="progressbar"
-                    aria-label="Basic example"
-                    aria-valuenow={35}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                  >
-                    <div
-                      className="progress-bar bg-main-600 rounded-pill"
-                      style={{ width: "35%" }}
-                    />
-                  </div>
-                  <div className="flex-align gap-4">
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-400 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-400 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                  </div>
-                  <span className="text-gray-900 flex-shrink-0">12</span>
-                </div>
-                <div className="flex-align gap-8 position-relative mb-20">
-                  <label
-                    className="position-absolute w-100 h-100 cursor-pointer"
-                    htmlFor="rating2"
-                  >
-                    {" "}
-                  </label>
-                  <div className="common-check common-radio mb-0">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="rating2"
-                    />
-                  </div>
-                  <div
-                    className="progress w-100 bg-gray-100 rounded-pill h-8"
-                    role="progressbar"
-                    aria-label="Basic example"
-                    aria-valuenow={20}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                  >
-                    <div
-                      className="progress-bar bg-main-600 rounded-pill"
-                      style={{ width: "20%" }}
-                    />
-                  </div>
-                  <div className="flex-align gap-4">
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-400 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-400 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-400 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                  </div>
-                  <span className="text-gray-900 flex-shrink-0">5</span>
-                </div>
-                <div className="flex-align gap-8 position-relative mb-0">
-                  <label
-                    className="position-absolute w-100 h-100 cursor-pointer"
-                    htmlFor="rating1"
-                  >
-                    {" "}
-                  </label>
-                  <div className="common-check common-radio mb-0">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="rating1"
-                    />
-                  </div>
-                  <div
-                    className="progress w-100 bg-gray-100 rounded-pill h-8"
-                    role="progressbar"
-                    aria-label="Basic example"
-                    aria-valuenow={5}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                  >
-                    <div
-                      className="progress-bar bg-main-600 rounded-pill"
-                      style={{ width: "5%" }}
-                    />
-                  </div>
-                  <div className="flex-align gap-4">
-                    <span className="text-xs fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-400 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-400 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-400 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-400 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                  </div>
-                  <span className="text-gray-900 flex-shrink-0">2</span>
-                </div>
-              </div>
               <div className="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32">
                 <h6 className="text-xl border-bottom border-gray-100 pb-24 mb-24">
                   Filter by Color
@@ -519,97 +229,21 @@ const ShopSection = () => {
                   Filter by Brand
                 </h6>
                 <ul className="max-h-540 overflow-y-auto scroll-sm">
-                  <li className="mb-24">
-                    <div className="form-check common-check common-radio">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="color"
-                        id="brand1"
-                      />
-                      <label className="form-check-label" htmlFor="brand1">
-                        Apple
-                      </label>
-                    </div>
-                  </li>
-                  <li className="mb-24">
-                    <div className="form-check common-check common-radio">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="color"
-                        id="brand2"
-                      />
-                      <label className="form-check-label" htmlFor="brand2">
-                        Samsung
-                      </label>
-                    </div>
-                  </li>
-                  <li className="mb-24">
-                    <div className="form-check common-check common-radio">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="color"
-                        id="brand3"
-                      />
-                      <label className="form-check-label" htmlFor="brand3">
-                        Microsoft
-                      </label>
-                    </div>
-                  </li>
-                  <li className="mb-24">
-                    <div className="form-check common-check common-radio">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="color"
-                        id="brand4"
-                      />
-                      <label className="form-check-label" htmlFor="brand4">
-                        Apple
-                      </label>
-                    </div>
-                  </li>
-                  <li className="mb-24">
-                    <div className="form-check common-check common-radio">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="color"
-                        id="brand5"
-                      />
-                      <label className="form-check-label" htmlFor="brand5">
-                        HP
-                      </label>
-                    </div>
-                  </li>
-                  <li className="mb-24">
-                    <div className="form-check common-check common-radio">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="color"
-                        id="DELL"
-                      />
-                      <label className="form-check-label" htmlFor="DELL">
-                        DELL
-                      </label>
-                    </div>
-                  </li>
-                  <li className="mb-0">
-                    <div className="form-check common-check common-radio">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="color"
-                        id="Redmi"
-                      />
-                      <label className="form-check-label" htmlFor="Redmi">
-                        Redmi
-                      </label>
-                    </div>
-                  </li>
+                  {brandsQuery.data && brandsQuery.data.map((item, index) => (
+                    <li key={index} className="mb-24">
+                      <div className="form-check common-check common-radio">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="brands"
+                          id={item.id}
+                        />
+                        <label className="form-check-label" htmlFor={item.name}>
+                          {item.name}
+                        </label>
+                      </div>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="shop-sidebar__box rounded-8">
@@ -628,18 +262,16 @@ const ShopSection = () => {
                   <button
                     onClick={() => setGrid(true)}
                     type="button"
-                    className={`w-44 h-44 flex-center border rounded-6 text-2xl list-btn border-gray-100 ${
-                      grid === true && "border-main-600 text-white bg-main-600"
-                    }`}
+                    className={`w-44 h-44 flex-center border rounded-6 text-2xl list-btn border-gray-100 ${grid === true && "border-main-600 text-white bg-main-600"
+                      }`}
                   >
                     <i className="ph-bold ph-list-dashes" />
                   </button>
                   <button
                     onClick={() => setGrid(false)}
                     type="button"
-                    className={`w-44 h-44 flex-center border rounded-6 text-2xl grid-btn border-gray-100 ${
-                      grid === false && "border-main-600 text-white bg-main-600"
-                    }`}
+                    className={`w-44 h-44 flex-center border rounded-6 text-2xl grid-btn border-gray-100 ${grid === false && "border-main-600 text-white bg-main-600"
+                      }`}
                   >
                     <i className="ph ph-squares-four" />
                   </button>
@@ -673,1310 +305,75 @@ const ShopSection = () => {
             </div>
             {/* Top End */}
             <div className={`list-grid-wrapper ${grid && "list-view"}`}>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img1.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                  <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
-                    Best Sale{" "}
-                  </span>
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
+              {productQuery.data && productQuery.data.map((item, index) => (
+                <div key={index} className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
+                  <Link
+                    href={`/product-details-two/${item.id}`}
+                    className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
+                  >
+                    <img
+                      src={item.image_url}
+                      alt=""
+                      className="w-auto w-[1rem]"
+                    />
+                    <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
+                      Hot{" "}
+                    </span>
+                  </Link>
+                  <div className="product-card__content mt-16">
+                    <h6 className="title text-lg fw-semibold mt-12 mb-8">
+                      <Link
+                        href="/product-details-two"
+                        className="link text-line-2"
+                        tabIndex={0}
+                      >
+                        {item.name}
+                      </Link>
+                    </h6>
+                    <div className="flex-align mb-20 mt-16 gap-6">
+                      <span className="text-xs fw-medium text-gray-500">4.8</span>
+                      <span className="text-15 fw-medium text-warning-600 d-flex">
+                        <i className="ph-fill ph-star" />
+                      </span>
+                      <span className="text-xs fw-medium text-gray-500">
+                        (17k)
+                      </span>
+                    </div>
+                    <div className="mt-8">
+                      <div
+                        className="progress w-100 bg-color-three rounded-pill h-4"
+                        role="progressbar"
+                        aria-label="Basic example"
+                        aria-valuenow={35}
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                      >
+                        <div
+                          className="progress-bar bg-main-two-600 rounded-pill"
+                          style={{ width: "35%" }}
+                        />
+                      </div>
+                      <span className="text-gray-900 text-xs fw-medium mt-8">
+                        Sold: 18/35
+                      </span>
+                    </div>
+                    <div className="product-card__price my-20">
+                      <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
+                      <span className="text-heading text-md fw-semibold ">
+                        Rp {item.variations[0].default_sell_price}
+                        <span className="text-gray-500 fw-normal">/Qty</span>{" "}
+                      </span>
+                    </div>
                     <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
+                      href="/cart"
+                      className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
                       tabIndex={0}
                     >
-                      Taylor Farms Broccoli Florets Vegetables
+                      Add To Cart <i className="ph ph-shopping-cart" />
                     </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
                   </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
                 </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img2.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img3.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <span className="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
-                    Sale 50%{" "}
-                  </span>
-                  <img
-                    src="assets/images/thumbs/product-two-img4.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img5.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img6.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img7.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img8.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <span className="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
-                    Sale 50%{" "}
-                  </span>
-                  <img
-                    src="assets/images/thumbs/product-two-img9.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img10.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img11.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <span className="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
-                    New
-                  </span>
-                  <img
-                    src="assets/images/thumbs/product-two-img12.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img13.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img14.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
-                    Best Sale{" "}
-                  </span>
-                  <img
-                    src="assets/images/thumbs/product-two-img15.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <span className="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
-                    New
-                  </span>
-                  <img
-                    src="assets/images/thumbs/product-two-img15.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img1.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                  <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
-                    Best Sale{" "}
-                  </span>
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img2.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <img
-                    src="assets/images/thumbs/product-two-img3.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
-              <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
-                <Link
-                  href="/product-details-two"
-                  className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
-                >
-                  <span className="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
-                    Sale 50%{" "}
-                  </span>
-                  <img
-                    src="assets/images/thumbs/product-two-img4.png"
-                    alt=""
-                    className="w-auto max-w-unset"
-                  />
-                </Link>
-                <div className="product-card__content mt-16">
-                  <h6 className="title text-lg fw-semibold mt-12 mb-8">
-                    <Link
-                      href="/product-details-two"
-                      className="link text-line-2"
-                      tabIndex={0}
-                    >
-                      Taylor Farms Broccoli Florets Vegetables
-                    </Link>
-                  </h6>
-                  <div className="flex-align mb-20 mt-16 gap-6">
-                    <span className="text-xs fw-medium text-gray-500">4.8</span>
-                    <span className="text-15 fw-medium text-warning-600 d-flex">
-                      <i className="ph-fill ph-star" />
-                    </span>
-                    <span className="text-xs fw-medium text-gray-500">
-                      (17k)
-                    </span>
-                  </div>
-                  <div className="mt-8">
-                    <div
-                      className="progress w-100 bg-color-three rounded-pill h-4"
-                      role="progressbar"
-                      aria-label="Basic example"
-                      aria-valuenow={35}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                    >
-                      <div
-                        className="progress-bar bg-main-two-600 rounded-pill"
-                        style={{ width: "35%" }}
-                      />
-                    </div>
-                    <span className="text-gray-900 text-xs fw-medium mt-8">
-                      Sold: 18/35
-                    </span>
-                  </div>
-                  <div className="product-card__price my-20">
-                    <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"></span>
-                    <span className="text-heading text-md fw-semibold ">
-                      Rp. 23.999.999{" "}
-                      <span className="text-gray-500 fw-normal">/Qty</span>{" "}
-                    </span>
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                    tabIndex={0}
-                  >
-                    Add To Cart <i className="ph ph-shopping-cart" />
-                  </Link>
-                </div>
-              </div>
+              ))}
             </div>
             {/* Pagination Start */}
             <ul className="pagination flex-center flex-wrap gap-16">
