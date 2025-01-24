@@ -23,6 +23,7 @@ const CartSection = () => {
                     </tr>
                   </thead>
                   <tbody>
+                    {data && data.map((item, index) => (
                     <tr>
                       <td>
                         <button
