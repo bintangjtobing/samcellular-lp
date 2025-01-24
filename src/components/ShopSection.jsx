@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import ReactSlider from "react-slider";
 import { useQuery } from "@tanstack/react-query";
 import { clientApiRequest } from "@/services/clientApiRequest";
+import { addData } from "@/db/helper";
 
 import Link from "next/link";
 
@@ -19,6 +20,15 @@ const fetchDataCategories = async () => {
 const fetchDataBrands = async () => {
   const { data } = await clientApiRequest({
     url: "brands",
+    method: "GET",
+    parameter: "business_id=1",
+  });
+  return data;
+};
+
+const fetchDataProducts = async () => {
+  const { data } = await clientApiRequest({
+    url: "products",
     method: "GET",
     parameter: "business_id=1",
   });
@@ -54,6 +64,16 @@ const ShopSection = () => {
   let sidebarController = () => {
     setActive(!active);
   };
+
+  const storeProductToCart = async (data) => {
+    await addData({
+      id: data.id,
+      name: data.name,
+      price: data.variations[0].sell_price_inc_tax,
+      qty: 1,
+      image: data.image_url
+    })
+  }
 
   return (
     <section className="shop py-80">
@@ -331,7 +351,7 @@ const ShopSection = () => {
                         Hot{" "}
                       </span>
                     </Link>
-                    <div className="product-card__content mt-16">
+                    <div className="product-card__content mt-16 w-100">
                       <h6 className="title fw-medium mt-12 mb-0 text-14">
                         <Link
                           href={`/product-details-two/${item.id}`}
@@ -369,13 +389,13 @@ const ShopSection = () => {
                           17rb+ terjual
                         </span>
                       </div>
-                      <Link
-                        href="/cart"
-                        className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-72"
+                      <button
+                        onClick={() => storeProductToCart(item)}
+                        className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-72 w-100"
                         tabIndex={0}
                       >
                         <i className="ph ph-shopping-cart" /> Beli
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 ))}

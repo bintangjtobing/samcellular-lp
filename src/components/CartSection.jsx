@@ -1,10 +1,64 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import QuantityControl from "../helper/QuantityControl";
+import { getAllData, deleteData } from "@/db/helper";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 const CartSection = () => {
+  const queryClient = useQueryClient(); // Akses query client
+  const [quantities, setQuantities] = useState({}); // Menyimpan kuantitas per item
+
+  // Ambil semua data menggunakan useQuery
+  const { data: products } = useQuery({
+    queryKey: ["cart-products"],
+    queryFn: getAllData,
+    onSuccess: (data) => {
+      // Set kuantitas awal saat data dimuat
+      const initialQuantities = {};
+      data.forEach((item) => {
+        initialQuantities[item.id] = item.qty || 1; // Default kuantitas = 1
+      });
+      setQuantities(initialQuantities);
+    },
+  });
+
+  // Mutasi untuk menghapus data
+  const mutation = useMutation({
+    mutationFn: deleteData, // Fungsi untuk menghapus data
+    onSuccess: () => {
+      // Invalidasi query untuk memuat ulang data
+      queryClient.invalidateQueries(["cart-products"]);
+    },
+  });
+
+  // Hitung subtotal untuk setiap item
+  const calculateSubTotal = (price, quantity) => parseFloat(price) * quantity;
+
+  // Hitung total harga berdasarkan subtotal dari setiap item
+  const subtotal = products
+    ? products.reduce(
+      (sum, product) =>
+        sum + calculateSubTotal(product.price, quantities[product.id] || 1),
+      0
+    )
+    : 0;
+
+  // Biaya pengiriman (dalam contoh ini "Free")
+  const estimatedDeliveryFee = 0;
+
+  // Total adalah subtotal + biaya pengiriman
+  const totalPrice = subtotal + estimatedDeliveryFee;
+
+  // Handler untuk mengubah kuantitas
+  const handleQuantityChange = (id, newQuantity) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: newQuantity,
+    }));
+  };
+
   return (
     <section className="cart py-80">
       <div className="container">
@@ -23,342 +77,91 @@ const CartSection = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {data && data.map((item, index) => (
-                    <tr>
-                      <td>
-                        <button
-                          type="button"
-                          className="remove-tr-btn flex-align gap-12 hover-text-danger-600"
-                        >
-                          <i className="ph ph-x-circle text-2xl d-flex" />
-                          Remove
-                        </button>
-                      </td>
-                      <td>
-                        <div className="table-product d-flex align-items-center gap-24">
-                          <Link
-                            href="/product-details-two"
-                            className="table-product__thumb border border-gray-100 rounded-8 flex-center "
-                          >
-                            <img
-                              src="assets/images/thumbs/product-two-img1.png"
-                              alt=""
-                            />
-                          </Link>
-                          <div className="table-product__content text-start">
-                            <h6 className="title text-lg fw-semibold mb-8">
+                    {products &&
+                      products.map((item) => (
+                        <tr key={item.id}>
+                          <td>
+                            <button
+                              onClick={() => mutation.mutate(item.id)}
+                              type="button"
+                              className="remove-tr-btn flex-align gap-12 hover-text-danger-600"
+                            >
+                              <i className="ph ph-x-circle text-2xl d-flex" />
+                              Remove
+                            </button>
+                          </td>
+                          <td>
+                            <div className="table-product d-flex align-items-center gap-24">
                               <Link
-                                href="/product-details"
-                                className="link text-line-2"
-                                tabIndex={0}
+                                style={{
+                                  width: "150px",
+                                }}
+                                href="/product-details-two"
+                                className="table-product__thumb border border-gray-100 rounded-8 flex-center"
                               >
-                                Taylor Farms Broccoli Florets Vegetables
+                                <img
+                                  style={{
+                                    width: "120px",
+                                  }}
+                                  src={item.image}
+                                  alt=""
+                                />
                               </Link>
-                            </h6>
-                            <div className="flex-align gap-16 mb-16">
-                              <div className="flex-align gap-6">
-                                <span className="text-md fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-md fw-semibold text-gray-900">
-                                  4.8
-                                </span>
+                              <div
+                                className="table-product__content text-start"
+                                style={{
+                                  minWidth: "12rem",
+                                  maxWidth: "25rem",
+                                }}
+                              >
+                                <h6 className="title text-lg fw-semibold mb-8">
+                                  <Link
+                                    href="/product-details"
+                                    className="link text-line-2"
+                                    tabIndex={0}
+                                  >
+                                    {item.name}
+                                  </Link>
+                                </h6>
                               </div>
-                              <span className="text-sm fw-medium text-gray-200">
-                                |
-                              </span>
-                              <span className="text-neutral-600 text-sm">
-                                128 Reviews
-                              </span>
                             </div>
-                            <div className="flex-align gap-16">
-                              <Link
-                                href="/cart"
-                                className="product-card__cart btn bg-gray-50 text-heading text-sm hover-bg-main-600 hover-text-white py-7 px-8 rounded-8 flex-center gap-8 fw-medium"
-                              >
-                                Camera
-                              </Link>
-                              <Link
-                                href="/cart"
-                                className="product-card__cart btn bg-gray-50 text-heading text-sm hover-bg-main-600 hover-text-white py-7 px-8 rounded-8 flex-center gap-8 fw-medium"
-                              >
-                                Videos
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <span className="text-lg h6 mb-0 fw-semibold">
-                          $125.00
-                        </span>
-                      </td>
-                      <td>
-                        <QuantityControl initialQuantity={1} />
-                      </td>
-                      <td>
-                        <span className="text-lg h6 mb-0 fw-semibold">
-                          $125.00
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <button
-                          type="button"
-                          className="remove-tr-btn flex-align gap-12 hover-text-danger-600"
-                        >
-                          <i className="ph ph-x-circle text-2xl d-flex" />
-                          Remove
-                        </button>
-                      </td>
-                      <td>
-                        <div className="table-product d-flex align-items-center gap-24">
-                          <Link
-                            href="/product-details-two"
-                            className="table-product__thumb border border-gray-100 rounded-8 flex-center "
-                          >
-                            <img
-                              src="assets/images/thumbs/product-two-img2.png"
-                              alt=""
+                          </td>
+                          <td>
+                            <span className="text-lg h6 mb-0 fw-semibold">
+                              {new Intl.NumberFormat("id-ID", {
+                                style: "currency",
+                                currency: "IDR",
+                                maximumFractionDigits: 0,
+                              }).format(item.price)}{" "}
+                            </span>
+                          </td>
+                          <td>
+                            <QuantityControl
+                              initialQuantity={quantities[item.id] || 1}
+                              quantity={quantities[item.id] || 1}
+                              setQuantity={(newQuantity) =>
+                                handleQuantityChange(item.id, newQuantity)
+                              }
                             />
-                          </Link>
-                          <div className="table-product__content text-start">
-                            <h6 className="title text-lg fw-semibold mb-8">
-                              <Link
-                                href="/product-details"
-                                className="link text-line-2"
-                                tabIndex={0}
-                              >
-                                Taylor Farms Broccoli Florets Vegetables
-                              </Link>
-                            </h6>
-                            <div className="flex-align gap-16 mb-16">
-                              <div className="flex-align gap-6">
-                                <span className="text-md fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-md fw-semibold text-gray-900">
-                                  4.8
-                                </span>
-                              </div>
-                              <span className="text-sm fw-medium text-gray-200">
-                                |
-                              </span>
-                              <span className="text-neutral-600 text-sm">
-                                128 Reviews
-                              </span>
-                            </div>
-                            <div className="flex-align gap-16">
-                              <Link
-                                href="/cart"
-                                className="product-card__cart btn bg-gray-50 text-heading text-sm hover-bg-main-600 hover-text-white py-7 px-8 rounded-8 flex-center gap-8 fw-medium"
-                              >
-                                Camera
-                              </Link>
-                              <Link
-                                href="/cart"
-                                className="product-card__cart btn bg-gray-50 text-heading text-sm hover-bg-main-600 hover-text-white py-7 px-8 rounded-8 flex-center gap-8 fw-medium"
-                              >
-                                Videos
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <span className="text-lg h6 mb-0 fw-semibold">
-                          $125.00
-                        </span>
-                      </td>
-                      <td>
-                        <QuantityControl initialQuantity={1} />
-                      </td>
-                      <td>
-                        <span className="text-lg h6 mb-0 fw-semibold">
-                          $125.00
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <button
-                          type="button"
-                          className="remove-tr-btn flex-align gap-12 hover-text-danger-600"
-                        >
-                          <i className="ph ph-x-circle text-2xl d-flex" />
-                          Remove
-                        </button>
-                      </td>
-                      <td>
-                        <div className="table-product d-flex align-items-center gap-24">
-                          <Link
-                            href="/product-details-two"
-                            className="table-product__thumb border border-gray-100 rounded-8 flex-center "
-                          >
-                            <img
-                              src="assets/images/thumbs/product-two-img3.png"
-                              alt=""
-                            />
-                          </Link>
-                          <div className="table-product__content text-start">
-                            <h6 className="title text-lg fw-semibold mb-8">
-                              <Link
-                                href="/product-details"
-                                className="link text-line-2"
-                                tabIndex={0}
-                              >
-                                Taylor Farms Broccoli Florets Vegetables
-                              </Link>
-                            </h6>
-                            <div className="flex-align gap-16 mb-16">
-                              <div className="flex-align gap-6">
-                                <span className="text-md fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-md fw-semibold text-gray-900">
-                                  4.8
-                                </span>
-                              </div>
-                              <span className="text-sm fw-medium text-gray-200">
-                                |
-                              </span>
-                              <span className="text-neutral-600 text-sm">
-                                128 Reviews
-                              </span>
-                            </div>
-                            <div className="flex-align gap-16">
-                              <Link
-                                href="/cart"
-                                className="product-card__cart btn bg-gray-50 text-heading text-sm hover-bg-main-600 hover-text-white py-7 px-8 rounded-8 flex-center gap-8 fw-medium"
-                              >
-                                Camera
-                              </Link>
-                              <Link
-                                href="/cart"
-                                className="product-card__cart btn bg-gray-50 text-heading text-sm hover-bg-main-600 hover-text-white py-7 px-8 rounded-8 flex-center gap-8 fw-medium"
-                              >
-                                Videos
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <span className="text-lg h6 mb-0 fw-semibold">
-                          $125.00
-                        </span>
-                      </td>
-                      <td>
-                        <QuantityControl initialQuantity={1} />
-                      </td>
-                      <td>
-                        <span className="text-lg h6 mb-0 fw-semibold">
-                          $125.00
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <button
-                          type="button"
-                          className="remove-tr-btn flex-align gap-12 hover-text-danger-600"
-                        >
-                          <i className="ph ph-x-circle text-2xl d-flex" />
-                          Remove
-                        </button>
-                      </td>
-                      <td>
-                        <div className="table-product d-flex align-items-center gap-24">
-                          <Link
-                            href="/product-details-two"
-                            className="table-product__thumb border border-gray-100 rounded-8 flex-center "
-                          >
-                            <img
-                              src="assets/images/thumbs/product-two-img4.png"
-                              alt=""
-                            />
-                          </Link>
-                          <div className="table-product__content text-start">
-                            <h6 className="title text-lg fw-semibold mb-8">
-                              <Link
-                                href="/product-details"
-                                className="link text-line-2"
-                                tabIndex={0}
-                              >
-                                Taylor Farms Broccoli Florets Vegetables
-                              </Link>
-                            </h6>
-                            <div className="flex-align gap-16 mb-16">
-                              <div className="flex-align gap-6">
-                                <span className="text-md fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-md fw-semibold text-gray-900">
-                                  4.8
-                                </span>
-                              </div>
-                              <span className="text-sm fw-medium text-gray-200">
-                                |
-                              </span>
-                              <span className="text-neutral-600 text-sm">
-                                128 Reviews
-                              </span>
-                            </div>
-                            <div className="flex-align gap-16">
-                              <Link
-                                href="/cart"
-                                className="product-card__cart btn bg-gray-50 text-heading text-sm hover-bg-main-600 hover-text-white py-7 px-8 rounded-8 flex-center gap-8 fw-medium"
-                              >
-                                Camera
-                              </Link>
-                              <Link
-                                href="/cart"
-                                className="product-card__cart btn bg-gray-50 text-heading text-sm hover-bg-main-600 hover-text-white py-7 px-8 rounded-8 flex-center gap-8 fw-medium"
-                              >
-                                Videos
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <span className="text-lg h6 mb-0 fw-semibold">
-                          $125.00
-                        </span>
-                      </td>
-                      <td>
-                        <QuantityControl initialQuantity={1} />
-                      </td>
-                      <td>
-                        <span className="text-lg h6 mb-0 fw-semibold">
-                          $125.00
-                        </span>
-                      </td>
-                    </tr>
+                          </td>
+                          <td>
+                            <span className="text-lg h6 mb-0 fw-semibold">
+                              {new Intl.NumberFormat("id-ID", {
+                                style: "currency",
+                                currency: "IDR",
+                                maximumFractionDigits: 0,
+                              }).format(
+                                calculateSubTotal(
+                                  item.price,
+                                  quantities[item.id] || 1
+                                )
+                              )}{" "}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
-              </div>
-              <div className="flex-between flex-wrap gap-16 mt-16">
-                <div className="flex-align gap-16">
-                  <input
-                    type="text"
-                    className="common-input"
-                    placeholder="Coupon Code"
-                  />
-                  <button
-                    type="submit"
-                    className="btn btn-main py-18 w-100 rounded-8"
-                  >
-                    Apply Coupon
-                  </button>
-                </div>
-                <button
-                  type="submit"
-                  className="text-lg text-gray-500 hover-text-main-600"
-                >
-                  Update Cart
-                </button>
               </div>
             </div>
           </div>
@@ -370,30 +173,40 @@ const CartSection = () => {
                   <span className="text-gray-900 font-heading-two">
                     Subtotal
                   </span>
-                  <span className="text-gray-900 fw-semibold">$250.00</span>
+                  <span className="text-gray-900 fw-semibold">
+                    {new Intl.NumberFormat("id-ID", {
+                      style: "currency",
+                      currency: "IDR",
+                      maximumFractionDigits: 0,
+                    }).format(subtotal)}{" "}
+                  </span>
                 </div>
                 <div className="mb-32 flex-between gap-8">
                   <span className="text-gray-900 font-heading-two">
-                    Extimated Delivery
+                    Estimated Delivery
                   </span>
-                  <span className="text-gray-900 fw-semibold">Free</span>
-                </div>
-                <div className="mb-0 flex-between gap-8">
-                  <span className="text-gray-900 font-heading-two">
-                    Extimated Taxs
+                  <span className="text-gray-900 fw-semibold">
+                    {estimatedDeliveryFee === 0
+                      ? "Free"
+                      : new Intl.NumberFormat("id-ID", {
+                        style: "currency",
+                        currency: "IDR",
+                        maximumFractionDigits: 0,
+                      }).format(estimatedDeliveryFee)}{" "}
                   </span>
-                  <span className="text-gray-900 fw-semibold">USD 10.00</span>
                 </div>
               </div>
-              <div className="bg-color-three rounded-8 p-24 mt-24">
-                <div className="flex-between gap-8">
-                  <span className="text-gray-900 text-xl fw-semibold">
-                    Total
-                  </span>
-                  <span className="text-gray-900 text-xl fw-semibold">
-                    $250.00
-                  </span>
-                </div>
+              <div className="flex-between gap-8 bg-color-three rounded-8 p-24 mt-32 text-lg">
+                <span className="text-gray-900 font-heading-two">
+                  Total
+                </span>
+                <span className="text-gray-900 fw-semibold">
+                  {new Intl.NumberFormat("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                    maximumFractionDigits: 0,
+                  }).format(totalPrice)}{" "}
+                </span>
               </div>
               <Link
                 href="/checkout"

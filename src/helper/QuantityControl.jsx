@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react';
 
-const QuantityControl = ({ initialQuantity = 1 }) => {
-    const [quantity, setQuantity] = useState(initialQuantity);
+const QuantityControl = ({ initialQuantity = 1, quantity, setQuantity }) => {
 
     const incrementQuantity = () => setQuantity(quantity + 1);
     const decrementQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : quantity);

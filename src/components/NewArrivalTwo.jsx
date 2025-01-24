@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { clientApiRequest } from "@/services/clientApiRequest";
+import { addData } from "@/db/helper";
 
 import dynamic from "next/dynamic";
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
@@ -88,6 +89,16 @@ const NewArrivalTwo = () => {
       },
     ],
   };
+
+  const storeProductToCart = async (data) => {
+    await addData({
+      id: data.id,
+      name: data.name,
+      price: data.variations[0].sell_price_inc_tax,
+      qty: 1,
+      image: data.image_url
+    })
+  }
   return (
     <section className="new-arrival pb-80">
       <div className="container">
@@ -128,7 +139,7 @@ const NewArrivalTwo = () => {
                     <div className="product-card__content p-sm-2">
                       <h6 className="title fw-medium mt-12 mb-0 text-14">
                         <Link
-                          href="/product-details-two"
+                          href={`/product-details-two/${item.id}`}
                           className="link text-line-2"
                           tabIndex={0}
                         >
@@ -163,13 +174,13 @@ const NewArrivalTwo = () => {
                           17rb+ terjual
                         </span>
                       </div>
-                      <Link
-                        href="/cart"
+                      <button
+                        onClick={() => storeProductToCart(item)}
                         className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-68"
                         tabIndex={0}
                       >
                         <i className="ph ph-shopping-cart" /> Beli
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>

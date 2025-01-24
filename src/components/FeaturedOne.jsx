@@ -3,9 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
 import { clientApiRequest } from "@/services/clientApiRequest";
 import { useQuery } from "@tanstack/react-query";
+import { addData } from "@/db/helper";
+
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 const fetchProducts = async () => {
@@ -67,6 +68,16 @@ const FeaturedOne = () => {
     ],
   };
 
+  const storeProductToCart = async (data) => {
+    await addData({
+      id: data.id,
+      name: data.name,
+      price: data.variations[0].sell_price_inc_tax,
+      qty: 1,
+      image: data.image_url
+    })
+  }
+
   return (
     <section className="featured-products">
       <div className="container container-lg">
@@ -95,7 +106,7 @@ const FeaturedOne = () => {
                           <div className="">
                             <div className="mt-24 product-card d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                               <Link
-                                href="/product-details-two"
+                                href={`/product-details-two/${item.id}`}
                                 className="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24"
                                 tabIndex={0}
                               >
@@ -116,7 +127,7 @@ const FeaturedOne = () => {
                               <div className="product-card__content mt-16 flex-grow-1">
                                 <h6 className="title fw-medium mt-12 mb-0 text-14">
                                   <Link
-                                    href="/product-details-two"
+                                    href={`/product-details-two/${item.id}`}
                                     className="link text-line-2"
                                     tabIndex={0}
                                   >
@@ -153,20 +164,20 @@ const FeaturedOne = () => {
                                     17rb+ terjual
                                   </span>
                                 </div>
-                                <Link
-                                  href="/cart"
+                                <button
+                                  onClick={() => storeProductToCart(item)}
                                   className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-68"
                                   tabIndex={0}
                                 >
                                   <i className="ph ph-shopping-cart" /> Beli
-                                </Link>
+                                </button>
                               </div>
                             </div>
                           </div>
                           <div className="">
                             <div className="mt-24 product-card d-flex gap-16 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                               <Link
-                                href="/product-details-two"
+                                href={`/product-details-two/${item.id}`}
                                 className="product-card__thumb flex-center h-unset rounded-8 bg-gray-50 position-relative w-unset flex-shrink-0 p-24"
                                 tabIndex={0}
                               >
@@ -224,13 +235,13 @@ const FeaturedOne = () => {
                                     17rb+ terjual
                                   </span>
                                 </div>
-                                <Link
-                                  href="/cart"
+                                <button
+                                  onClick={() => storeProductToCart(item)}
                                   className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-68"
                                   tabIndex={0}
                                 >
                                   <i className="ph ph-shopping-cart" /> Beli
-                                </Link>
+                                </button>
                               </div>
                             </div>
                           </div>

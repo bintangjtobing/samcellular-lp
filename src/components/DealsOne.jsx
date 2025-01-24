@@ -5,6 +5,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import { clientApiRequest } from "@/services/clientApiRequest";
 import { useQuery } from "@tanstack/react-query";
+import { addData } from "@/db/helper";
 
 const SampleNextArrow = memo(function SampleNextArrow(props) {
   const { className, onClick } = props;
@@ -104,6 +105,16 @@ const DealsOne = () => {
       },
     ],
   };
+
+  const storeProductToCart = async (data) => {
+    await addData({
+      id: data.id,
+      name: data.name,
+      price: data.variations[0].sell_price_inc_tax,
+      qty: 1,
+      image: data.image_url
+    })
+  }
   return (
     <section className="deals-weeek pt-80">
       <div className="container">
@@ -189,7 +200,7 @@ const DealsOne = () => {
                           className="w-auto w-[20rem]"
                         />
                       </Link>
-                      <div className="product-card__content mt-16">
+                      <div className="product-card__content mt-16 w-100">
                         <h6 className="title fw-medium mt-12 mb-0 text-14">
                           <Link
                             href="/product-details-two"
@@ -229,13 +240,13 @@ const DealsOne = () => {
                             17rb+ terjual
                           </span>
                         </div>
-                        <Link
-                          href="/cart"
-                          className="product-card__cart btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-68"
+                        <button
+                          onClick={() => storeProductToCart(item)}
+                          className="product-card__cart w-100 btn bg-gray-50 text-heading hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium px-68"
                           tabIndex={0}
                         >
                           <i className="ph ph-shopping-cart" /> Beli
-                        </Link>
+                        </button>
                       </div>
                     </div>
                   </div>

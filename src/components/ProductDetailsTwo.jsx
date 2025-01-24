@@ -4,11 +4,13 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { clientApiRequest } from "@/services/clientApiRequest";
+import db from "@/db/db";
+import { addData } from "@/db/helper";
+import Swal from 'sweetalert2'
 
-import dynamic from "next/dynamic";
-const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 const ProductDetailsTwo = ({ id }) => {
+
   const { data } = useQuery({
     queryKey: ["product-details"],
     queryFn: async () => {
@@ -19,32 +21,6 @@ const ProductDetailsTwo = ({ id }) => {
       return data;
     },
   });
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    const loadCountdown = async () => {
-      const { getCountdown } = await import("../helper/Countdown");
-      setTimeLeft(getCountdown());
-    };
-    loadCountdown();
-    const interval = setInterval(() => {
-      loadCountdown();
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-  const productImages = [
-    "../assets/images/thumbs/product-details-two-thumb1.png",
-    "../assets/images/thumbs/product-details-two-thumb2.png",
-    "../assets/images/thumbs/product-details-two-thumb3.png",
-    "../assets/images/thumbs/product-details-two-thumb1.png",
-    "../assets/images/thumbs/product-details-two-thumb2.png",
-  ];
 
   // increment & decrement
   const [quantity, setQuantity] = useState(1);
@@ -52,16 +28,17 @@ const ProductDetailsTwo = ({ id }) => {
   const decrementQuantity = () =>
     setQuantity(quantity > 1 ? quantity - 1 : quantity);
 
-  const [mainImage, setMainImage] = useState(productImages[0]);
-
-  const settingsThumbs = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    focusOnSelect: true,
+  const storeProductToCart = async () => {
+      await addData({
+        id: data?.id,
+        name: data?.name,
+        price: data?.variations[0]?.sell_price_inc_tax,
+        qty: quantity,
+        image: data.image_url
+      })
   };
+
+
   return (
     <section className="product-details py-80">
       <div className="container">
@@ -197,9 +174,9 @@ const ProductDetailsTwo = ({ id }) => {
                   {data?.variations?.[0]?.variation_location_details?.[0]
                     ?.qty_available
                     ? parseInt(
-                        data.variations[0].variation_location_details[0]
-                          .qty_available
-                      )
+                      data.variations[0].variation_location_details[0]
+                        .qty_available
+                    )
                     : 0}{" "}
                   {data && data.unit.short_name}
                 </label>
@@ -247,13 +224,14 @@ const ProductDetailsTwo = ({ id }) => {
                   <h6 className="text-lg mb-0">From $10.00</h6>
                 </div> */}
               </div>
-              <Link
+              <button
+                onClick={() => storeProductToCart()}
                 href="#"
-                className="btn btn-main flex-center gap-8 rounded-8 py-16 fw-normal mt-20"
+                className="btn btn-main flex-center gap-8 rounded-8 py-16 fw-normal mt-20 w-100"
               >
                 <i className="ph ph-shopping-cart-simple text-lg" />
                 Add To Cart
-              </Link>
+              </button>
               <Link
                 href="#"
                 className="btn btn-outline-main rounded-8 py-16 fw-normal mt-16 w-100"
