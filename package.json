@@ -22,7 +22,7 @@
     "dexie": "^4.0.11",
     "isotope-layout": "^3.0.6",
     "jquery": "^3.7.1",
-    "next": "^15.2.0-canary.25",
+    "next": "^15.1.6",
     "react": "^18",
     "react-dom": "^18",
     "react-fast-marquee": "^1.6.5",
