@@ -93,7 +93,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -174,7 +174,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >
@@ -229,7 +229,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -310,7 +310,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >
@@ -365,7 +365,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -446,7 +446,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >
@@ -501,7 +501,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -582,7 +582,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >
@@ -647,7 +647,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -728,7 +728,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >
@@ -783,7 +783,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -864,7 +864,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >
@@ -919,7 +919,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -1000,7 +1000,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >
@@ -1055,7 +1055,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -1136,7 +1136,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >
@@ -1201,7 +1201,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -1282,7 +1282,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >
@@ -1337,7 +1337,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -1418,7 +1418,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >
@@ -1473,7 +1473,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -1554,7 +1554,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >
@@ -1609,7 +1609,7 @@ const TrendingThree = () => {
                 <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                   <div className="product-card__thumb rounded-8 bg-gray-50 position-relative">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="w-100 h-100 flex-center"
                     >
                       <img
@@ -1690,7 +1690,7 @@ const TrendingThree = () => {
                   <div className="product-card__content mt-16 w-100">
                     <h6 className="title text-lg fw-semibold my-16">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="link text-line-2"
                         tabIndex={0}
                       >

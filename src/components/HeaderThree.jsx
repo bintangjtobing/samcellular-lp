@@ -212,7 +212,7 @@ const HeaderThree = () => {
                   <li className="common-dropdown__item nav-submenu__item">
                     <Link
                       onClick={() => setActiveIndex(null)}
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
                     >
                       {" "}
@@ -379,7 +379,7 @@ const HeaderThree = () => {
               </li>
               <li className="nav-menu__item">
                 <Link href="/contact" className="nav-menu__link">
-                  Contact Us
+                  Samcellular Care
                 </Link>
               </li>
             </ul>
@@ -396,7 +396,7 @@ const HeaderThree = () => {
             <div className="logo">
               <Link href="/" className="link">
                 <img
-                  src="https://res.cloudinary.com/dilb4d364/image/upload/v1737661961/dbf1c02b-7254-4187-9236-41d26e03d77f.png"
+                  src="https://res.cloudinary.com/dilb4d364/image/upload/v1737748445/samcelular-long-logo_x26w9d.png"
                   alt="Logo"
                 />
               </Link>
@@ -1740,10 +1740,10 @@ const HeaderThree = () => {
                       </li>
                       <li className="common-dropdown__item nav-submenu__item">
                         <Link
-                          href="/product-details-two"
+                          href={`/product/${item.id}`}
                           scroll={false}
                           className={`common-dropdown__link nav-submenu__link hover-bg-neutral-100 ${
-                            pathname == "/product-details-two" && "activePage"
+                            pathname == {`/product/${item.id}`} && "activePage"
                           } `}
                         >
                           {" "}
@@ -1911,7 +1911,7 @@ const HeaderThree = () => {
                         pathname == "/contact" && "activePage"
                       } `}
                     >
-                      Contact Us
+                      Samcellular Care
                     </Link>
                   </li>
                 </ul>

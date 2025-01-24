@@ -72,7 +72,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const projectId = "pyk4w18a3o";
   Clarity.init(projectId);
-
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>

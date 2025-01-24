@@ -83,7 +83,7 @@ const VendorTwo = () => {
                   <ul className="max-h-540 overflow-y-auto scroll-sm">
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Mobile &amp; Accessories (12)
@@ -91,7 +91,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Laptop (12)
@@ -99,7 +99,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Electronics (12)
@@ -107,7 +107,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Smart Watch (12)
@@ -115,7 +115,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Storage (12)
@@ -123,7 +123,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Portable Devices (12)
@@ -131,7 +131,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Action Camera (12)
@@ -139,7 +139,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Smart Gadget (12)
@@ -147,7 +147,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Monitor (12)
@@ -155,7 +155,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Smart TV (12)
@@ -163,7 +163,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Camera (12)
@@ -171,7 +171,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-24">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Monitor Stand (12)
@@ -179,7 +179,7 @@ const VendorTwo = () => {
                     </li>
                     <li className="mb-0">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="text-gray-900 hover-text-main-600"
                       >
                         Headphone (12)

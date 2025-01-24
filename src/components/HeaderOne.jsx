@@ -210,7 +210,7 @@ const HeaderOne = () => {
                   </li>
                   <li className="common-dropdown__item nav-submenu__item">
                     <Link
-                      href="/product-details-two"
+                      href={`/product/${item.id}`}
                       className="common-dropdown__link nav-submenu__link hover-bg-neutral-100"
                       onClick={() => setActiveIndex(null)}
                     >
@@ -385,14 +385,14 @@ const HeaderOne = () => {
                 </ul>
               </li>
 
-              {/* Contact Us Menu */}
+              {/* Samcellular Care Menu */}
               <li className="nav-menu__item">
                 <Link
                   href="/contact"
                   className="nav-menu__link"
                   onClick={() => setActiveIndex(null)}
                 >
-                  Contact Us
+                  Samcellular Care
                 </Link>
               </li>
             </ul>
@@ -419,7 +419,7 @@ const HeaderOne = () => {
                   href="#"
                   className="text-white text-sm hover-text-decoration-underline"
                 >
-                  About us
+                  Tentang Samcellular
                 </Link>
               </li>
               <li className="border-right-item">
@@ -1274,10 +1274,10 @@ const HeaderOne = () => {
                       </li>
                       <li className="common-dropdown__item nav-submenu__item">
                         <Link
-                          href="/product-details-two"
+                          href={`/product/${item.id}`}
                           scroll={false}
                           className={`common-dropdown__link nav-submenu__link hover-bg-neutral-100 ${
-                            pathname == "/product-details-two" && "activePage"
+                            pathname == {`/product/${item.id}`} && "activePage"
                           } `}
                         >
                           {" "}
@@ -1449,7 +1449,7 @@ const HeaderOne = () => {
                         pathname == "/contact" && "activePage"
                       } `}
                     >
-                      Contact Us
+                      Samcellular Care
                     </Link>
                   </li>
                 </ul>

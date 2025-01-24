@@ -17,7 +17,7 @@ const FooterTwo = () => {
             <div className="footer-item__logo">
               <Link href="/">
                 <img
-                  src="https://res.cloudinary.com/dilb4d364/image/upload/v1737661961/dbf1c02b-7254-4187-9236-41d26e03d77f.png"
+                  src="https://res.cloudinary.com/dilb4d364/image/upload/v1737748445/samcelular-long-logo_x26w9d.png"
                   alt=""
                 />
               </Link>
@@ -77,7 +77,7 @@ const FooterTwo = () => {
             </div>
           </div>
           <div className="footer-item">
-            <h6 className="footer-item__title">About us</h6>
+            <h6 className="footer-item__title">Tentang Samcellular</h6>
             <ul className="footer-menu">
               <li className="mb-16">
                 <Link
@@ -92,7 +92,7 @@ const FooterTwo = () => {
                   href="/shop"
                   className="text-gray-600 hover-text-main-600"
                 >
-                  Contact Us
+                  Samcellular Care
                 </Link>
               </li>
               <li className="mb-16">

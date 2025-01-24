@@ -130,7 +130,7 @@ const FooterOne = () => {
                   href="/contact"
                   className="text-gray-600 hover-text-main-600"
                 >
-                  Contact Us
+                  Samcellular Care
                 </Link>
               </li>
               <li className="mb-16">

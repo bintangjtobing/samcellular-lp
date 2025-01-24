@@ -4,7 +4,12 @@ import query from "jquery";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "select2/dist/css/select2.min.css";
-import { useQuery } from "@tanstack/react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
+
 import { clientApiRequest } from "@/services/clientApiRequest";
 const HeaderTwo = ({ category }) => {
   let pathname = usePathname();
@@ -35,18 +40,6 @@ const HeaderTwo = ({ category }) => {
     }
   }, []);
 
-  // Set the default language
-  const [selectedLanguage, setSelectedLanguage] = useState("Eng");
-  const handleLanguageChange = (language) => {
-    setSelectedLanguage(language);
-  };
-
-  // Set the default currency
-  const [selectedCurrency, setSelectedCurrency] = useState("USD");
-  const handleCurrencyChange = (currency) => {
-    setSelectedCurrency(currency);
-  };
-
   // Mobile menu support
   const [menuActive, setMenuActive] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
@@ -70,20 +63,21 @@ const HeaderTwo = ({ category }) => {
   };
   const [activeIndexCat, setActiveIndexCat] = useState(null);
   const handleCatClick = (index) => {
-    setActiveIndexCat(activeIndexCat === index ? null : index);
+    setActiveIndexCat((prevIndex) => (prevIndex === index ? null : index));
   };
+  const queryClient = new QueryClient();
 
   const { data } = useQuery({
-    queryKey: ['categories'],
+    queryKey: ["categories"],
     queryFn: async () => {
       const { data } = await clientApiRequest({
-        url: 'categories',
-        parameter: 'business_id=1',
-        method: 'GET'
-      })
-      return data
-    }
-  })
+        url: "categories",
+        parameter: "business_id=1",
+        method: "GET",
+      });
+      return data;
+    },
+  });
 
   return (
     <>
@@ -120,8 +114,9 @@ const HeaderTwo = ({ category }) => {
       {/* ==================== Search Box End Here ==================== */}
       {/* ==================== Mobile Menu Start Here ==================== */}
       <div
-        className={`mobile-menu scroll-sm d-lg-none d-block ${menuActive && "active"
-          }`}
+        className={`mobile-menu scroll-sm d-lg-none d-block ${
+          menuActive && "active"
+        }`}
       >
         <button
           onClick={() => {
@@ -135,24 +130,32 @@ const HeaderTwo = ({ category }) => {
         </button>
         <div className="mobile-menu__inner">
           <Link href="/" className="mobile-menu__logo">
-            <img src="assets/images/logo/logo.png" alt="Logo" />
+            <img
+              src="https://res.cloudinary.com/dilb4d364/image/upload/v1737750152/samcelular-long-logo-black_uxfhjm.png"
+              alt="Logo SamCellular"
+            />
           </Link>
           <div className="mobile-menu__menu">
             {/* Nav Menu Start */}
             <ul className="nav-menu flex-align nav-menu--mobile">
               <li className="nav-menu__item">
-                <Link href="/" className="nav-menu__link">
-                  Home
+                <Link href="/about" className="nav-menu__link">
+                  Tentang Samcellular
                 </Link>
               </li>
               <li className="nav-menu__item">
-                <Link href="/contact" className="nav-menu__link">
-                  Contact Us
+                <Link href="/partnership" className="nav-menu__link">
+                  Mitra Samcellular
                 </Link>
               </li>
               <li className="nav-menu__item">
-                <Link href="/contact" className="nav-menu__link">
-                  About Us
+                <Link href="/customer-education" className="nav-menu__link">
+                  Pusat Edukasi Samcellular
+                </Link>
+              </li>
+              <li className="nav-menu__item">
+                <Link href="/about" className="nav-menu__link">
+                  Samcellular Care
                 </Link>
               </li>
             </ul>
@@ -169,8 +172,9 @@ const HeaderTwo = ({ category }) => {
             <div className="logo">
               <Link href="/" className="link">
                 <img
-                  src="https://res.cloudinary.com/dilb4d364/image/upload/v1737661961/dbf1c02b-7254-4187-9236-41d26e03d77f.png"
-                  alt="Logo"
+                  src="https://res.cloudinary.com/dilb4d364/image/upload/v1737748445/samcelular-long-logo_x26w9d.png"
+                  alt="Logo SamCellular"
+                  style={{ maxWidth: "200px", height: "auto" }}
                 />
               </Link>
             </div>
@@ -193,16 +197,12 @@ const HeaderTwo = ({ category }) => {
                     name="state"
                   >
                     <option value={1}>All Categories</option>
-                    {/* <option value={1}>Grocery</option>
-                    <option value={1}>Breakfast &amp; Dairy</option>
-                    <option value={1}>Vegetables</option>
-                    <option value={1}>Milks and Dairies</option>
-                    <option value={1}>Pet Foods &amp; Toy</option>
-                    <option value={1}>Breads &amp; Bakery</option>
-                    <option value={1}>Fresh Seafood</option>
-                    <option value={1}>Fronzen Foods</option>
-                    <option value={1}>Noodles &amp; Rice</option>
-                    <option value={1}>Ice Cream</option> */}
+                    {data &&
+                      data.map((item, index) => (
+                        <option value={item.id} key={index}>
+                          {item.name}
+                        </option>
+                      ))}
                   </select>
                   <div className="search-form__wrapper position-relative">
                     <input
@@ -239,7 +239,7 @@ const HeaderTwo = ({ category }) => {
                   <span className="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
                     <i className="ph ph-shopping-cart-simple" />
                     <span className="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
-                      2
+                      0
                     </span>
                   </span>
                   <span className="text-md text-white item-hover__text d-none d-lg-flex">
@@ -255,16 +255,18 @@ const HeaderTwo = ({ category }) => {
       {/* ======================= Middle Header Two End ========================= */}
       {/* ==================== Header Two Start Here ==================== */}
       <header
-        className={`header bg-white border-bottom border-gray-100 ${scroll && "fixed-header"
-          }`}
+        className={`header bg-white border-bottom border-gray-100 ${
+          scroll && "fixed-header"
+        }`}
       >
         <div className="container">
           <nav className="header-inner d-flex justify-content-between gap-8">
             <div className="flex-align menu-category-wrapper">
               {/* Category Dropdown Start */}
               <div
-                className={`category-two ${category === false ? "d-block" : "d-none"
-                  } `}
+                className={`category-two ${
+                  category === false ? "d-block" : "d-none"
+                } `}
               >
                 <button
                   onClick={handleCategoryToggle}
@@ -280,8 +282,9 @@ const HeaderTwo = ({ category }) => {
                   </span>
                 </button>
                 <div
-                  className={`responsive-dropdown cat common-dropdown d-lg-none d-block nav-submenu p-0 submenus-submenu-wrapper shadow-none border border-gray-100 ${activeCategory && "active"
-                    }`}
+                  className={`responsive-dropdown cat common-dropdown d-lg-none d-block nav-submenu p-0 submenus-submenu-wrapper shadow-none border border-gray-100 ${
+                    activeCategory && "active"
+                  }`}
                 >
                   <button
                     onClick={() => {
@@ -295,620 +298,67 @@ const HeaderTwo = ({ category }) => {
                   </button>
                   <div className="logo px-16 d-lg-none d-block">
                     <Link href="/" className="link">
-                      <img src="assets/images/logo/logo.png" alt="Logo" />
+                      <img
+                        src="https://res.cloudinary.com/dilb4d364/image/upload/v1737750152/samcelular-long-logo-black_uxfhjm.png"
+                        style={{ maxWidth: "200px", height: "auto" }}
+                        alt="Logo SamCellular"
+                      />
                     </Link>
                   </div>
                   <ul className="scroll-sm p-0 py-8 overflow-y-auto">
-                    <li
-                      onClick={() => handleCatClick(0)}
-                      className={`has-submenus-submenu ${activeIndexCat === 0 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        onClick={() => setActiveIndexCat(null)}
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Cell Phone</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 0 ? "open" : ""
+                    {data &&
+                      data.map((item, index) => (
+                        <li
+                          key={item.id}
+                          onClick={() => handleCatClick(index)} // Perbarui dengan index yang diklik
+                          className={`has-submenus-submenu ${
+                            activeIndexCat === index ? "active" : "" // Gunakan index untuk kondisi active
                           }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Cell Phone
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(1)}
-                      className={`has-submenus-submenu ${activeIndexCat === 1 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Wear</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 1 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Wear
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(2)}
-                      className={`has-submenus-submenu ${activeIndexCat === 2 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Computer</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 2 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Computer
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(3)}
-                      className={`has-submenus-submenu ${activeIndexCat === 3 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Headphone</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 3 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Headphone
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(4)}
-                      className={`has-submenus-submenu ${activeIndexCat === 4 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Smart Screen</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 4 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Smart Screen
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(5)}
-                      className={`has-submenus-submenu ${activeIndexCat === 5 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Smart Home</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 5 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Smart Home
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(6)}
-                      className={`has-submenus-submenu ${activeIndexCat === 6 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Digital Accessories</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 6 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Digital Accessories
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(7)}
-                      className={`has-submenus-submenu ${activeIndexCat === 7 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span> Value Added Services</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 7 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          {" "}
-                          Value Added Services
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(8)}
-                      className={`has-submenus-submenu ${activeIndexCat === 8 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Car Products</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 8 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Car Products
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(9)}
-                      className={`has-submenus-submenu ${activeIndexCat === 9 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Ecological Products</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 9 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Ecological Products
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(10)}
-                      className={`has-submenus-submenu ${activeIndexCat === 10 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Flat</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 10 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Flat
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(11)}
-                      className={`has-submenus-submenu ${activeIndexCat === 11 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Commercial Terminal</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 11 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Commercial Terminal
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(12)}
-                      className={`has-submenus-submenu ${activeIndexCat === 12 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Headphone</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 12 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Headphone
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li
-                      onClick={() => handleCatClick(13)}
-                      className={`has-submenus-submenu ${activeIndexCat === 13 ? "active" : ""
-                        }`}
-                    >
-                      <Link
-                        href="#"
-                        className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                      >
-                        <span>Smart Screen</span>
-                        <span className="icon text-md d-flex ms-auto">
-                          <i className="ph ph-caret-right" />
-                        </span>
-                      </Link>
-                      <div
-                        className={`submenus-submenu py-16 ${activeIndexCat === 13 ? "open" : ""
-                          }`}
-                      >
-                        <h6 className="text-lg px-16 submenus-submenu__title">
-                          Smart Screen
-                        </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                          <li>
-                            <Link href="/shop">Samsung</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Iphone</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Vivo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Oppo</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Itel</Link>
-                          </li>
-                          <li>
-                            <Link href="/shop">Realme</Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
+                        >
+                          <Link
+                            onClick={(e) => e.preventDefault()} // Hindari reload halaman
+                            href="#"
+                            className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
+                          >
+                            <span>{item.name}</span>
+                            <span className="icon text-md d-flex ms-auto">
+                              <i className="ph ph-caret-right" />
+                            </span>
+                          </Link>
+                          <div
+                            className={`submenus-submenu py-16 ${
+                              activeIndexCat === index ? "open" : "" // Gunakan index untuk membuka submenus
+                            }`}
+                          >
+                            <h6 className="text-lg px-16 submenus-submenu__title">
+                              {item.name}
+                            </h6>
+                            {item.sub_categories &&
+                              item.sub_categories.length > 0 && (
+                                <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                                  {item.sub_categories.map((subItem) => (
+                                    <li key={subItem.id}>
+                                      <Link
+                                        href={`/${subItem.name
+                                          .toLowerCase()
+                                          .replace(/\s+/g, "-")}`}
+                                      >
+                                        {subItem.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                          </div>
+                        </li>
+                      ))}
                   </ul>
                 </div>
               </div>
               <div
-                className={`category main  on-hover-item bg-main-600 text-white ${category === true ? "d-block" : "d-none"
-                  }`}
+                className={`category main  on-hover-item bg-main-600 text-white ${
+                  category === true ? "d-block" : "d-none"
+                }`}
               >
                 <button
                   type="button"
@@ -931,54 +381,32 @@ const HeaderTwo = ({ category }) => {
                   </button>
                   <div className="logo px-16 d-lg-none d-block">
                     <Link href="/" className="link">
-                      <img src="assets/images/logo/logo.png" alt="Logo" />
+                      <img
+                        src="https://res.cloudinary.com/dilb4d364/image/upload/v1737748445/samcelular-long-logo_x26w9d.png"
+                        alt="Logo SamCellular"
+                      />
                     </Link>
                   </div>
                   <ul className="scroll-sm p-0 py-8 w-300 max-h-400 overflow-y-auto">
-                    {data && data.map((item, index) => (
-                      <li key={index} className="has-submenus-submenu">
-                        <Link
-                          href="#"
-                          className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
-                        >
-                          <span>{item.name}</span>
-                          <span className="icon text-md d-flex ms-auto">
-                            <i className="ph ph-caret-right" />
-                          </span>
-                        </Link>
-                        <div className="submenus-submenu py-16">
-                          <h6 className="text-lg px-16 submenus-submenu__title">
-                            {item.name}
-                          </h6>
-                          {/* <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
-                            <li>
-                              <Link href="/shop">Potato &amp; Tomato</Link>
-                            </li>
-                            <li>
-                              <Link href="/shop">Cucumber &amp; Capsicum</Link>
-                            </li>
-                            <li>
-                              <Link href="/shop">Leafy Vegetables</Link>
-                            </li>
-                            <li>
-                              <Link href="/shop">Root Vegetables</Link>
-                            </li>
-                            <li>
-                              <Link href="/shop">Beans &amp; Okra</Link>
-                            </li>
-                            <li>
-                              <Link href="/shop">Cabbage &amp; Cauliflower</Link>
-                            </li>
-                            <li>
-                              <Link href="/shop">Gourd &amp; Drumstick</Link>
-                            </li>
-                            <li>
-                              <Link href="/shop">Specialty</Link>
-                            </li>
-                          </ul> */}
-                        </div>
-                      </li>
-                    ))}
+                    {data &&
+                      data.map((item, index) => (
+                        <li key={index} className="has-submenus-submenu">
+                          <Link
+                            href="#"
+                            className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
+                          >
+                            <span>{item.name}</span>
+                            <span className="icon text-md d-flex ms-auto">
+                              <i className="ph ph-caret-right" />
+                            </span>
+                          </Link>
+                          <div className="submenus-submenu py-16">
+                            <h6 className="text-lg px-16 submenus-submenu__title">
+                              {item.name}
+                            </h6>
+                          </div>
+                        </li>
+                      ))}
                   </ul>
                 </div>
               </div>
@@ -987,35 +415,83 @@ const HeaderTwo = ({ category }) => {
               <div className="header-menu d-lg-block d-none">
                 {/* Nav Menu Start */}
                 <ul className="nav-menu flex-align ">
-                  <li className="on-hover-item nav-menu__item ">
-                    <Link href="/" className="nav-menu__link">
-                      Home
+                  <li className="nav-menu__item">
+                    <Link
+                      href="/about"
+                      scroll={false}
+                      className={`nav-menu__link ${
+                        pathname == "/about" && "activePage"
+                      } `}
+                    >
+                      Tentang Samcellular
+                    </Link>
+                  </li>
+                  <li className="nav-menu__item">
+                    <Link
+                      href="/partnership"
+                      scroll={false}
+                      className={`nav-menu__link ${
+                        pathname == "/partnership" && "activePage"
+                      } `}
+                    >
+                      Mitra Samcellular
+                    </Link>
+                  </li>
+                  <li className="nav-menu__item">
+                    <Link
+                      href="/customer-education"
+                      scroll={false}
+                      className={`nav-menu__link ${
+                        pathname == "/customer-education" && "activePage"
+                      } `}
+                    >
+                      Pusat Edukasi Samcellular
                     </Link>
                   </li>
                   <li className="nav-menu__item">
                     <Link
                       href="/contact"
                       scroll={false}
-                      className={`nav-menu__link ${pathname == "/contact" && "activePage"
-                        } `}
+                      className={`nav-menu__link ${
+                        pathname == "/contact" && "activePage"
+                      } `}
                     >
-                      About Us
-                    </Link>
-                  </li>
-                  <li className="nav-menu__item">
-                    <Link
-                      href="#"
-                      scroll={false}
-                      className={`nav-menu__link ${pathname == "/contact" && "activePage"
-                        } `}
-                    >
-                      Contact Us
+                      Samcellular Care
                     </Link>
                   </li>
                 </ul>
                 {/* Nav Menu End */}
               </div>
               {/* Menu End  */}
+            </div>
+            {/* Header Right start */}
+            <div className="header-right flex-align">
+              <div className="me-8 d-lg-none d-block">
+                <div className="header-two-activities flex-align flex-wrap gap-32">
+                  <Link
+                    href="/cart"
+                    className="flex-align flex-column gap-8 item-hover-two"
+                  >
+                    <span className="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
+                      <i className="ph ph-shopping-cart-simple" />
+                      <span className="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
+                        2
+                      </span>
+                    </span>
+                    <span className="text-md text-white item-hover__text d-none d-lg-flex">
+                      Cart
+                    </span>
+                  </Link>
+                </div>
+              </div>
+              <button
+                onClick={handleMenuToggle}
+                type="button"
+                className="toggle-mobileMenu d-lg-none ms-3n text-gray-800 text-4xl d-flex"
+              >
+                {" "}
+                <i className="ph ph-list" />{" "}
+              </button>
             </div>
           </nav>
         </div>

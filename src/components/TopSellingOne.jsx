@@ -113,7 +113,7 @@ const TopSellingOne = () => {
                   <div>
                     <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
                       >
                         <span className="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
@@ -139,7 +139,7 @@ const TopSellingOne = () => {
                         </div>
                         <h6 className="title text-lg fw-semibold mt-12 mb-8">
                           <Link
-                            href="/product-details-two"
+                            href={`/product/${item.id}`}
                             className="link text-line-2"
                             tabIndex={0}
                           >
@@ -194,7 +194,7 @@ const TopSellingOne = () => {
                   <div>
                     <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
                       >
                         <span className="product-card__badge bg-danger-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
@@ -220,7 +220,7 @@ const TopSellingOne = () => {
                         </div>
                         <h6 className="title text-lg fw-semibold mt-12 mb-8">
                           <Link
-                            href="/product-details-two"
+                            href={`/product/${item.id}`}
                             className="link text-line-2"
                             tabIndex={0}
                           >
@@ -275,7 +275,7 @@ const TopSellingOne = () => {
                   <div>
                     <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
                       >
                         <span className="product-card__badge bg-warning-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
@@ -301,7 +301,7 @@ const TopSellingOne = () => {
                         </div>
                         <h6 className="title text-lg fw-semibold mt-12 mb-8">
                           <Link
-                            href="/product-details-two"
+                            href={`/product/${item.id}`}
                             className="link text-line-2"
                             tabIndex={0}
                           >
@@ -356,7 +356,7 @@ const TopSellingOne = () => {
                   <div>
                     <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
                       >
                         <span className="product-card__badge bg-tertiary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
@@ -382,7 +382,7 @@ const TopSellingOne = () => {
                         </div>
                         <h6 className="title text-lg fw-semibold mt-12 mb-8">
                           <Link
-                            href="/product-details-two"
+                            href={`/product/${item.id}`}
                             className="link text-line-2"
                             tabIndex={0}
                           >
@@ -437,7 +437,7 @@ const TopSellingOne = () => {
                   <div>
                     <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
                       >
                         <span className="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
@@ -463,7 +463,7 @@ const TopSellingOne = () => {
                         </div>
                         <h6 className="title text-lg fw-semibold mt-12 mb-8">
                           <Link
-                            href="/product-details-two"
+                            href={`/product/${item.id}`}
                             className="link text-line-2"
                             tabIndex={0}
                           >

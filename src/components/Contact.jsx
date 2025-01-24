@@ -9,7 +9,7 @@ const Contact = () => {
           <div className="col-lg-8">
             <div className="contact-box border border-gray-100 rounded-16 px-24 py-40">
               <form action="#">
-                <h6 className="mb-32">Make Custom Request</h6>
+                <h6 className="mb-32">Tinggalkan Pesan</h6>
                 <div className="row gy-4">
                   <div className="col-sm-6 col-xs-6">
                     <label
@@ -101,7 +101,7 @@ const Contact = () => {
                       type="submit"
                       className="btn btn-main py-18 px-32 rounded-8"
                     >
-                      Get a Quote
+                      Kirim Pesan
                     </button>
                   </div>
                 </div>
@@ -127,19 +127,37 @@ const Contact = () => {
                   <i className="ph-fill ph-envelope" />
                 </span>
                 <Link
-                  href="/mailto:support24@marketpro.com"
+                  href="/mailto:cs@samcellular.id"
                   className="text-md text-gray-900 hover-text-main-600"
                 >
-                  support24@marketpro.com
+                  cs@samcellular.id
                 </Link>
               </div>
               <div className="flex-align gap-16 mb-0">
                 <span className="w-40 h-40 flex-center rounded-circle border border-gray-100 text-main-two-600 text-2xl flex-shrink-0">
                   <i className="ph-fill ph-map-pin" />
                 </span>
-                <span className="text-md text-gray-900 ">
-                  789 Inner Lane, California, USA
-                </span>
+                <div className="text-md text-gray-900">
+                  <p>
+                    <b>Plaza Medan Fair</b>
+                    <br />
+                    Lt 4 Tahap 4 No 232/233, Jl. Gatot Subroto No.30, Sekip,
+                    Kec. Medan Petisah, Kota Medan, Sumatera Utara 20113.
+                    <br />
+                  </p>
+                  <p>
+                    <b>Plaza Millenium</b>
+                    <br />
+                    Lt 1 No 73, Jl. Kapten Muslim No.111, Dwi Kora, Kec. Medan
+                    Helvetia, Kota Medan, Sumatera Utara 20118
+                    <br />
+                  </p>
+                  <p>
+                    <b>Area Street Johor</b>
+                    <br />
+                    Jl Karya Wisata No 167 D, Gedung Johor Medan
+                  </p>
+                </div>
               </div>
             </div>
             <div className="mt-24 flex-align flex-wrap gap-16">

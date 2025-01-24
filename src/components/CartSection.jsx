@@ -39,10 +39,10 @@ const CartSection = () => {
   // Hitung total harga berdasarkan subtotal dari setiap item
   const subtotal = products
     ? products.reduce(
-      (sum, product) =>
-        sum + calculateSubTotal(product.price, quantities[product.id] || 1),
-      0
-    )
+        (sum, product) =>
+          sum + calculateSubTotal(product.price, quantities[product.id] || 1),
+        0
+      )
     : 0;
 
   // Biaya pengiriman (dalam contoh ini "Free")
@@ -69,11 +69,10 @@ const CartSection = () => {
                 <table className="table style-three">
                   <thead>
                     <tr>
-                      <th className="h6 mb-0 text-lg fw-bold">Delete</th>
                       <th className="h6 mb-0 text-lg fw-bold">Product Name</th>
-                      <th className="h6 mb-0 text-lg fw-bold">Price</th>
-                      <th className="h6 mb-0 text-lg fw-bold">Quantity</th>
-                      <th className="h6 mb-0 text-lg fw-bold">Subtotal</th>
+                      <th className="h6 mb-0 text-lg text-end fw-bold">
+                        Subtotal
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -81,27 +80,17 @@ const CartSection = () => {
                       products.map((item) => (
                         <tr key={item.id}>
                           <td>
-                            <button
-                              onClick={() => mutation.mutate(item.id)}
-                              type="button"
-                              className="remove-tr-btn flex-align gap-12 hover-text-danger-600"
-                            >
-                              <i className="ph ph-x-circle text-2xl d-flex" />
-                              Remove
-                            </button>
-                          </td>
-                          <td>
                             <div className="table-product d-flex align-items-center gap-24">
                               <Link
                                 style={{
-                                  width: "150px",
+                                  maxWidth: "50px",
                                 }}
-                                href="/product-details-two"
+                                href={`/product/${item.id}`}
                                 className="table-product__thumb border border-gray-100 rounded-8 flex-center"
                               >
                                 <img
                                   style={{
-                                    width: "120px",
+                                    maxWidth: "40px",
                                   }}
                                   src={item.image}
                                   alt=""
@@ -114,38 +103,30 @@ const CartSection = () => {
                                   maxWidth: "25rem",
                                 }}
                               >
-                                <h6 className="title text-lg fw-semibold mb-8">
+                                <h6 className="title text-md fw-semibold mb-8">
                                   <Link
-                                    href="/product-details"
+                                    href={`/product/${item.id}`}
                                     className="link text-line-2"
                                     tabIndex={0}
                                   >
                                     {item.name}
                                   </Link>
                                 </h6>
+                                <span className="text-sm text-gray-600">
+                                  {item.product_description}
+                                </span>
+                                <QuantityControl
+                                  initialQuantity={quantities[item.id] || 1}
+                                  quantity={quantities[item.id] || 1}
+                                  setQuantity={(newQuantity) =>
+                                    handleQuantityChange(item.id, newQuantity)
+                                  }
+                                />
                               </div>
                             </div>
                           </td>
-                          <td>
-                            <span className="text-lg h6 mb-0 fw-semibold">
-                              {new Intl.NumberFormat("id-ID", {
-                                style: "currency",
-                                currency: "IDR",
-                                maximumFractionDigits: 0,
-                              }).format(item.price)}{" "}
-                            </span>
-                          </td>
-                          <td>
-                            <QuantityControl
-                              initialQuantity={quantities[item.id] || 1}
-                              quantity={quantities[item.id] || 1}
-                              setQuantity={(newQuantity) =>
-                                handleQuantityChange(item.id, newQuantity)
-                              }
-                            />
-                          </td>
-                          <td>
-                            <span className="text-lg h6 mb-0 fw-semibold">
+                          <td className="text-end">
+                            <span className="text-lg h6 mb-0 fw-normal">
                               {new Intl.NumberFormat("id-ID", {
                                 style: "currency",
                                 currency: "IDR",
@@ -167,39 +148,9 @@ const CartSection = () => {
           </div>
           <div className="col-xl-3 col-lg-4">
             <div className="cart-sidebar border border-gray-100 rounded-8 px-24 py-40">
-              <h6 className="text-xl mb-32">Cart Totals</h6>
-              <div className="bg-color-three rounded-8 p-24">
-                <div className="mb-32 flex-between gap-8">
-                  <span className="text-gray-900 font-heading-two">
-                    Subtotal
-                  </span>
-                  <span className="text-gray-900 fw-semibold">
-                    {new Intl.NumberFormat("id-ID", {
-                      style: "currency",
-                      currency: "IDR",
-                      maximumFractionDigits: 0,
-                    }).format(subtotal)}{" "}
-                  </span>
-                </div>
-                <div className="mb-32 flex-between gap-8">
-                  <span className="text-gray-900 font-heading-two">
-                    Estimated Delivery
-                  </span>
-                  <span className="text-gray-900 fw-semibold">
-                    {estimatedDeliveryFee === 0
-                      ? "Free"
-                      : new Intl.NumberFormat("id-ID", {
-                        style: "currency",
-                        currency: "IDR",
-                        maximumFractionDigits: 0,
-                      }).format(estimatedDeliveryFee)}{" "}
-                  </span>
-                </div>
-              </div>
+              <h6 className="text-xl mb-32">Ringkasan Belanja</h6>
               <div className="flex-between gap-8 bg-color-three rounded-8 p-24 mt-32 text-lg">
-                <span className="text-gray-900 font-heading-two">
-                  Total
-                </span>
+                <span className="text-gray-900 font-heading-two">Total</span>
                 <span className="text-gray-900 fw-semibold">
                   {new Intl.NumberFormat("id-ID", {
                     style: "currency",
@@ -212,7 +163,7 @@ const CartSection = () => {
                 href="/checkout"
                 className="btn btn-main mt-40 py-18 w-100 rounded-8"
               >
-                Proceed to checkout
+                Proses Checkout
               </Link>
             </div>
           </div>

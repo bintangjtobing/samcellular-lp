@@ -71,9 +71,10 @@ const ShopSection = () => {
       name: data.name,
       price: data.variations[0].sell_price_inc_tax,
       qty: 1,
-      image: data.image_url
-    })
-  }
+      image: data.image_url,
+      product_description: data.product_description,
+    });
+  };
 
   return (
     <section className="shop py-80">
@@ -99,7 +100,7 @@ const ShopSection = () => {
                     categoriesQuery.data.map((item, index) => (
                       <li key={index} className="mb-24">
                         <Link
-                          href="/product-details-two"
+                          href={`/product/${item.id}`}
                           className="text-gray-900 hover-text-main-600"
                         >
                           {item.name} ({item.sub_categories.length})
@@ -334,7 +335,7 @@ const ShopSection = () => {
                     className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2"
                   >
                     <Link
-                      href={`/product-details-two/${item.id}`}
+                      href={`/product/${item.id}`}
                       className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
                     >
                       <img
@@ -354,7 +355,7 @@ const ShopSection = () => {
                     <div className="product-card__content mt-16 w-100">
                       <h6 className="title fw-medium mt-12 mb-0 text-14">
                         <Link
-                          href={`/product-details-two/${item.id}`}
+                          href={`/product/${item.id}`}
                           className="link text-line-2"
                           tabIndex={0}
                         >

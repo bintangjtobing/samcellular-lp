@@ -60,11 +60,29 @@ const BannerTwo = () => {
                           <i className="ph ph-caret-right" />
                         </span>
                       </Link>
-                      <div className="submenus-submenu py-16">
+                      <div key={item.id} className="submenus-submenu py-16">
+                        {/* Parent Category */}
                         <h6 className="text-lg px-16 submenus-submenu__title">
-                          {item.sub_categories[0].name}
+                          {item.name}
                         </h6>
-                        <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm"></ul>
+
+                        {/* Subcategories */}
+                        {item.sub_categories &&
+                          item.sub_categories.length > 0 && (
+                            <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
+                              {item.sub_categories.map((subItem) => (
+                                <li key={subItem.id}>
+                                  <Link
+                                    href={`/${subItem.name
+                                      .toLowerCase()
+                                      .replace(/\s+/g, "-")}`}
+                                  >
+                                    {subItem.name}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                       </div>
                     </li>
                   ))}

@@ -112,9 +112,10 @@ const DealsOne = () => {
       name: data.name,
       price: data.variations[0].sell_price_inc_tax,
       qty: 1,
-      image: data.image_url
-    })
-  }
+      image: data.image_url,
+      product_description: data.product_description,
+    });
+  };
   return (
     <section className="deals-weeek pt-80">
       <div className="container">
@@ -183,7 +184,7 @@ const DealsOne = () => {
                   <div key={index}>
                     <div className="product-card h-100 p-16 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                       <Link
-                        href="/product-details-two"
+                        href={`/product/${item.id}`}
                         className="product-card__thumb flex-center rounded-8 bg-gray-50 position-relative"
                       >
                         <span className="product-card__badge bg-main-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
@@ -203,7 +204,7 @@ const DealsOne = () => {
                       <div className="product-card__content mt-16 w-100">
                         <h6 className="title fw-medium mt-12 mb-0 text-14">
                           <Link
-                            href="/product-details-two"
+                            href={`/product/${item.id}`}
                             className="link text-line-2"
                             tabIndex={0}
                           >

@@ -96,9 +96,10 @@ const NewArrivalTwo = () => {
       name: data.name,
       price: data.variations[0].sell_price_inc_tax,
       qty: 1,
-      image: data.image_url
-    })
-  }
+      image: data.image_url,
+      product_description: data.product_description,
+    });
+  };
   return (
     <section className="new-arrival pb-80">
       <div className="container">
@@ -122,7 +123,7 @@ const NewArrivalTwo = () => {
                 <div key={index}>
                   <div className="product-card h-100 p-8 border border-gray-100 hover-border-main-600 rounded-16 position-relative transition-2">
                     <Link
-                      href={`/product-details-two/${item.id}`}
+                      href={`/product/${item.id}`}
                       className="product-card__thumb flex-center"
                     >
                       <img
@@ -139,7 +140,7 @@ const NewArrivalTwo = () => {
                     <div className="product-card__content p-sm-2">
                       <h6 className="title fw-medium mt-12 mb-0 text-14">
                         <Link
-                          href={`/product-details-two/${item.id}`}
+                          href={`/product/${item.id}`}
                           className="link text-line-2"
                           tabIndex={0}
                         >

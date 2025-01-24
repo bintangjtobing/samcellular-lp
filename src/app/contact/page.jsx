@@ -1,50 +1,47 @@
-// import BottomFooter from "@/components/BottomFooter";
-// import Breadcrumb from "@/components/Breadcrumb";
-// import Contact from "@/components/Contact";
-// import FooterTwo from "@/components/FooterTwo";
-// import HeaderTwo from "@/components/HeaderTwo";
-// import ShippingOne from "@/components/ShippingOne";
-// import ColorInit from "@/helper/ColorInit";
-// import Preloader from "@/helper/Preloader";
-// import ScrollToTopInit from "@/helper/ScrollToTopInit";
+"use client";
+import BottomFooter from "@/components/BottomFooter";
+import Breadcrumb from "@/components/Breadcrumb";
+import Contact from "@/components/Contact";
+import FooterTwo from "@/components/FooterTwo";
+import HeaderTwo from "@/components/HeaderTwo";
+import ShippingTwo from "@/components/ShippingTwo";
+import ColorInit from "@/helper/ColorInit";
+import Preloader from "@/helper/Preloader";
+import ScrollToTopInit from "@/helper/ScrollToTopInit";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
+const page = () => {
+  const [queryClient] = useState(() => new QueryClient());
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* ColorInit */}
+      <ColorInit color={true} />
 
-// export const metadata = {
-//   title: "Sam Cellular - Jual Beli HP Baru & Bekas | Kredit HP Cepat Cair",
-//   description:
-//     "Sam Cellular melayani jual beli HP baru & bekas dengan harga terbaik! Nikmati kredit HP tanpa DP hanya dengan modal KTP, cair dalam 10 menit. Tersedia di Medan Fair dan Plaza Millenium. Toko HP terpercaya untuk kredit HP iPhone, Android, dan banyak lagi!",
-// };
+      {/* ScrollToTop */}
+      <ScrollToTopInit color="#4B4B4B" />
 
-// const page = () => {
-//   return (
-//     <>
-//       {/* ColorInit */}
-//       <ColorInit color={true} />
+      {/* Preloader */}
+      <Preloader />
 
-//       {/* ScrollToTop */}
-//       <ScrollToTopInit color="#FA6400" />
+      {/* HeaderTwo */}
+      <HeaderTwo category={true} />
 
-//       {/* Preloader */}
-//       <Preloader />
+      {/* Breadcrumb */}
+      <Breadcrumb title={"Contact"} />
 
-//       {/* HeaderTwo */}
-//       <HeaderTwo category={true} />
+      {/* Contact */}
+      <Contact />
 
-//       {/* Breadcrumb */}
-//       <Breadcrumb title={"Contact"} />
+      {/* ShippingOne */}
+      <ShippingTwo />
 
-//       {/* Contact */}
-//       <Contact />
+      {/* FooterTwo */}
+      <FooterTwo />
 
-//       {/* ShippingOne */}
-//       <ShippingOne />
+      {/* BottomFooter */}
+      <BottomFooter />
+    </QueryClientProvider>
+  );
+};
 
-//       {/* FooterTwo */}
-//       <FooterTwo />
-
-//       {/* BottomFooter */}
-//       <BottomFooter />
-//     </>
-//   );
-// };
-
-// export default page;
+export default page;
