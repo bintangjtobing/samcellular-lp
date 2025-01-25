@@ -1,50 +1,50 @@
-// import BottomFooter from "@/components/BottomFooter";
-// import Breadcrumb from "@/components/Breadcrumb";
-// import Checkout from "@/components/Checkout";
-// import FooterTwo from "@/components/FooterTwo";
-// import HeaderTwo from "@/components/HeaderTwo";
-// import ShippingOne from "@/components/ShippingOne";
-// import ColorInit from "@/helper/ColorInit";
-// import Preloader from "@/helper/Preloader";
-// import ScrollToTopInit from "@/helper/ScrollToTopInit";
+"use client";
+import BottomFooter from "@/components/BottomFooter";
+import Breadcrumb from "@/components/Breadcrumb";
+import Checkout from "@/components/Checkout";
+import FooterTwo from "@/components/FooterTwo";
+import HeaderTwo from "@/components/HeaderTwo";
+import ShippingOne from "@/components/ShippingOne";
+import ColorInit from "@/helper/ColorInit";
+import Preloader from "@/helper/Preloader";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useState } from "react";
 
-// export const metadata = {
-//   title: "Sam Cellular - Jual Beli HP Baru & Bekas | Kredit HP Cepat Cair",
-//   description:
-//     "Sam Cellular melayani jual beli HP baru & bekas dengan harga terbaik! Nikmati kredit HP tanpa DP hanya dengan modal KTP, cair dalam 10 menit. Tersedia di Medan Fair dan Plaza Millenium. Toko HP terpercaya untuk kredit HP iPhone, Android, dan banyak lagi!",
-// };
+import ScrollToTopInit from "@/helper/ScrollToTopInit";
 
-// const page = () => {
-//   return (
-//     <>
-//       {/* ColorInit */}
-//       <ColorInit color={true} />
+const page = () => {
+  const [queryClient] = useState(() => new QueryClient());
 
-//       {/* ScrollToTop */}
-//       <ScrollToTopInit color="#FA6400" />
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* ColorInit */}
+      <ColorInit color={true} />
 
-//       {/* Preloader */}
-//       <Preloader />
+      {/* ScrollToTop */}
+      <ScrollToTopInit color="#FA6400" />
 
-//       {/* HeaderTwo */}
-//       <HeaderTwo category={true} />
+      {/* Preloader */}
+      <Preloader />
 
-//       {/* Breadcrumb */}
-//       <Breadcrumb title={"Checkout"} />
+      {/* HeaderTwo */}
+      <HeaderTwo category={true} />
 
-//       {/* Checkout */}
-//       <Checkout />
+      {/* Breadcrumb */}
+      <Breadcrumb title={"Checkout"} />
 
-//       {/* ShippingOne */}
-//       <ShippingOne />
+      {/* Checkout */}
+      <Checkout />
 
-//       {/* FooterTwo */}
-//       <FooterTwo />
+      {/* ShippingOne */}
+      <ShippingOne />
 
-//       {/* BottomFooter */}
-//       <BottomFooter />
-//     </>
-//   );
-// };
+      {/* FooterTwo */}
+      <FooterTwo />
 
-// export default page;
+      {/* BottomFooter */}
+      <BottomFooter />
+    </QueryClientProvider>
+  );
+};
+
+export default page;

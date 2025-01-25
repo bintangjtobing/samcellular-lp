@@ -45,21 +45,7 @@ const Checkout = () => {
                   <input
                     type="text"
                     className="common-input border-gray-100"
-                    placeholder="Business Name"
-                  />
-                </div>
-                <div className="col-12">
-                  <input
-                    type="text"
-                    className="common-input border-gray-100"
-                    placeholder="United states (US)"
-                  />
-                </div>
-                <div className="col-12">
-                  <input
-                    type="text"
-                    className="common-input border-gray-100"
-                    placeholder="House number and street name"
+                    placeholder="House number and full street address"
                   />
                 </div>
                 <div className="col-12">
@@ -74,13 +60,6 @@ const Checkout = () => {
                     type="text"
                     className="common-input border-gray-100"
                     placeholder="City"
-                  />
-                </div>
-                <div className="col-12">
-                  <input
-                    type="text"
-                    className="common-input border-gray-100"
-                    placeholder="Sans Fransisco"
                   />
                 </div>
                 <div className="col-12">
