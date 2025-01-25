@@ -4,7 +4,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import Checkout from "@/components/Checkout";
 import FooterTwo from "@/components/FooterTwo";
 import HeaderTwo from "@/components/HeaderTwo";
-import ShippingOne from "@/components/ShippingOne";
+import ShippingTwo from "@/components/ShippingTwo";
 import ColorInit from "@/helper/ColorInit";
 import Preloader from "@/helper/Preloader";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -35,8 +35,8 @@ const page = () => {
       {/* Checkout */}
       <Checkout />
 
-      {/* ShippingOne */}
-      <ShippingOne />
+      {/* ShippingTwo */}
+      <ShippingTwo />
 
       {/* FooterTwo */}
       <FooterTwo />

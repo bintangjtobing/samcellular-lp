@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import BottomFooter from "@/components/BottomFooter";
 import Breadcrumb from "@/components/Breadcrumb";
 import CartSection from "@/components/CartSection";

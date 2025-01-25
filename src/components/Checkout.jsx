@@ -2,27 +2,47 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { getAllData } from "@/db/helper";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const Checkout = () => {
   const [selectedPayment, setSelectedPayment] = useState("payment1");
-
+  const queryClient = useQueryClient(); // Akses query client
+  const [quantities, setQuantities] = useState({}); // Menyimpan kuantitas per item
+  const { data: products } = useQuery({
+    queryKey: ["cart-products"],
+    queryFn: getAllData,
+    onSuccess: (data) => {
+      // Set kuantitas awal saat data dimuat
+      const initialQuantities = {};
+      data.forEach((item) => {
+        initialQuantities[item.id] = item.qty || 1; // Default kuantitas = 1
+      });
+      setQuantities(initialQuantities);
+    },
+  });
   const handlePaymentChange = (event) => {
     setSelectedPayment(event.target.id);
   };
+  const calculateSubTotal = (price, quantity) => parseFloat(price) * quantity;
+
+  // Hitung total harga berdasarkan subtotal dari setiap item
+  const subtotal = products
+    ? products.reduce(
+        (sum, product) =>
+          sum + calculateSubTotal(product.price, quantities[product.id] || 1),
+        0
+      )
+    : 0;
+
+  // Biaya pengiriman (dalam contoh ini "Free")
+  const estimatedDeliveryFee = 0;
+
+  // Total adalah subtotal + biaya pengiriman
+  const totalPrice = subtotal + estimatedDeliveryFee;
   return (
     <section className="checkout py-80">
       <div className="container">
-        <div className="border border-gray-100 rounded-8 px-30 py-20 mb-40">
-          <span className="">
-            Have a coupon?{" "}
-            <Link
-              href="/cart"
-              className="fw-semibold text-gray-900 hover-text-decoration-underline hover-text-main-600"
-            >
-              Click here to enter your code
-            </Link>{" "}
-          </span>
-        </div>
         <div className="row">
           <div className="col-xl-9 col-lg-8">
             <form action="#" className="pe-xl-5">
@@ -112,86 +132,59 @@ const Checkout = () => {
                     Subtotal
                   </span>
                 </div>
-                <div className="flex-between gap-24 mb-32">
-                  <div className="flex-align gap-12">
-                    <span className="text-gray-900 fw-normal text-md font-heading-two w-144">
-                      HP Chromebook With Intel Celeron
-                    </span>
-                    <span className="text-gray-900 fw-normal text-md font-heading-two">
-                      <i className="ph-bold ph-x" />
-                    </span>
-                    <span className="text-gray-900 fw-semibold text-md font-heading-two">
-                      1
-                    </span>
-                  </div>
-                  <span className="text-gray-900 fw-bold text-md font-heading-two">
-                    $250.00
-                  </span>
-                </div>
-                <div className="flex-between gap-24 mb-32">
-                  <div className="flex-align gap-12">
-                    <span className="text-gray-900 fw-normal text-md font-heading-two w-144">
-                      HP Chromebook With Intel Celeron
-                    </span>
-                    <span className="text-gray-900 fw-normal text-md font-heading-two">
-                      <i className="ph-bold ph-x" />
-                    </span>
-                    <span className="text-gray-900 fw-semibold text-md font-heading-two">
-                      1
-                    </span>
-                  </div>
-                  <span className="text-gray-900 fw-bold text-md font-heading-two">
-                    $250.00
-                  </span>
-                </div>
-                <div className="flex-between gap-24 mb-32">
-                  <div className="flex-align gap-12">
-                    <span className="text-gray-900 fw-normal text-md font-heading-two w-144">
-                      HP Chromebook With Intel Celeron
-                    </span>
-                    <span className="text-gray-900 fw-normal text-md font-heading-two">
-                      <i className="ph-bold ph-x" />
-                    </span>
-                    <span className="text-gray-900 fw-semibold text-md font-heading-two">
-                      1
-                    </span>
-                  </div>
-                  <span className="text-gray-900 fw-bold text-md font-heading-two">
-                    $250.00
-                  </span>
-                </div>
-                <div className="flex-between gap-24 mb-32">
-                  <div className="flex-align gap-12">
-                    <span className="text-gray-900 fw-normal text-md font-heading-two w-144">
-                      HP Chromebook With Intel Celeron
-                    </span>
-                    <span className="text-gray-900 fw-normal text-md font-heading-two">
-                      <i className="ph-bold ph-x" />
-                    </span>
-                    <span className="text-gray-900 fw-semibold text-md font-heading-two">
-                      1
-                    </span>
-                  </div>
-                  <span className="text-gray-900 fw-bold text-md font-heading-two">
-                    $250.00
-                  </span>
-                </div>
-                <div className="border-top border-gray-100 pt-30  mt-30">
-                  <div className="mb-32 flex-between gap-8">
-                    <span className="text-gray-900 font-heading-two text-xl fw-semibold">
-                      Subtotal
-                    </span>
-                    <span className="text-gray-900 font-heading-two text-md fw-bold">
-                      $859.00
-                    </span>
-                  </div>
-                  <div className="mb-0 flex-between gap-8">
-                    <span className="text-gray-900 font-heading-two text-xl fw-semibold">
-                      Total
-                    </span>
-                    <span className="text-gray-900 font-heading-two text-md fw-bold">
-                      $859.00
-                    </span>
+                <div>
+                  {products && products.length > 0 ? (
+                    products.map((product) => (
+                      <div
+                        key={product.id}
+                        className="flex-between gap-24 mb-32"
+                      >
+                        <div className="flex-align gap-12">
+                          <span className="text-gray-900 fw-normal text-md font-heading-two w-100">
+                            {product.name}
+                            <br />x {quantities[product.id] || 1}
+                          </span>
+                        </div>
+                        <span className="text-gray-900 fw-bold text-md font-heading-two">
+                          {new Intl.NumberFormat("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                            maximumFractionDigits: 0,
+                          }).format(product.price)}{" "}
+                        </span>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-gray-600 text-center">
+                      Your cart is empty.
+                    </p>
+                  )}
+
+                  <div className="border-top border-gray-100 pt-30 mt-30">
+                    <div className="mb-32 flex-between gap-8">
+                      <span className="text-gray-900 font-heading-two text-xl fw-semibold">
+                        Subtotal
+                      </span>
+                      <span className="text-gray-900 font-heading-two text-md fw-bold">
+                        {new Intl.NumberFormat("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                          maximumFractionDigits: 0,
+                        }).format(subtotal)}{" "}
+                      </span>
+                    </div>
+                    <div className="mb-0 flex-between gap-8">
+                      <span className="text-gray-900 font-heading-two text-xl fw-semibold">
+                        Total
+                      </span>
+                      <span className="text-gray-900 font-heading-two text-md fw-bold">
+                        {new Intl.NumberFormat("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                          maximumFractionDigits: 0,
+                        }).format(totalPrice)}{" "}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
